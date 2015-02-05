@@ -6,10 +6,11 @@
 * Listen UDP from Device
 * */
 var dgram = require('dgram');
+var buffer = new Buffer(11);
 
 var client = dgram.createSocket('udp4', function(data){
     console.log("Data Raw: ", data);
-    var buff = new Buffer(data, 'utf8');
+    console.log("String ify:", data.stringify());
     console.log( "Decode: " + buff.toString('hex'));
 });
     client.bind(3333);
