@@ -10,7 +10,7 @@ var buffer = new Buffer(11);
 
 var client = dgram.createSocket('udp4', function(data){
     console.log("Data Raw: ", data);
-    console.log("String ify:", data.stringify());
+    console.log("String ify:", JSON.stringify(data));
     console.log( "Decode: " + buff.toString('hex'));
 });
     client.bind(3333);
