@@ -15,7 +15,7 @@ var client = dgram.createSocket('udp4', function(data){
     console.log("2. New Buffer:");
     var arrData = JSON.stringify(data);
     var buf = new Buffer(arrData);
-    console.log('- Buffer: ', buf);
+    console.log('- Buffer: ', typeof buf, buf);
     console.log('- Decoder: ', buf.toString('utf8'));
 
 
