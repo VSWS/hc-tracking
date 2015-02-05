@@ -18,7 +18,7 @@ var client = dgram.createSocket('udp4', function(data){
 * Listen TCP from Device
 * */
 var net = require('net');
-var server = net.createServer(function (conn) {
+var server = net.createServer(function (c) {
     console.log('Client Connected');
     c.on('end', function () {
         console.log('Client Disconnected');
