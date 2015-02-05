@@ -17,7 +17,7 @@ var client = dgram.createSocket('udp4', function(data){
     console.log("Arr Data:", arrData, "length:", lengthData);
 
     for(var i = 0; i < lengthData; i++) {
-        buf[i] = i + 97;
+        arrData[i] = i + 97;
     }
     console.log("Decoder: ",buf.toString('ascii'));
     //console.log( "Decode: " + buff.toString('hex'));
