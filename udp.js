@@ -4,8 +4,9 @@
 var dgram = require('dgram');
 
 var client = dgram.createSocket('udp4', function(data){
+    console.log("Data Raw: ", data);
     var buff = new Buffer(data, 'utf8');
-    console.log("UDP Data: ", data + " | Decode: " + buff.toString('hex'));
+    console.log( "Decode: " + buff.toString('hex'));
 });
     client.bind(3333);
 
