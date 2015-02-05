@@ -13,6 +13,9 @@ var client = dgram.createSocket('udp4', function(data){
     var arrData = JSON.stringify(data);
     var lengthData = arrData.length;
     var buf = new Buffer(lengthData);
+
+    console.log("Arr Data:", arrData, "length:", lengthData);
+
     arrData.forEach(function(data){
         buf[data] = data + 97;
     });
