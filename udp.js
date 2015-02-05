@@ -9,11 +9,16 @@ var dgram = require('dgram');
 var buffer = new Buffer(11);
 
 var client = dgram.createSocket('udp4', function(data){
-    console.log("Data Raw: ", data);
-    var arrData = JSON.stringify(data);
-    var buf = new Buffer(arrData).toString('ascii');
+    console.log("1. Data Raw: ", data);
+    console.log("- Decoder:", typeof data, data.toString('utf8'));
 
-    console.log("Data decoder:", typeof data, data.toString('utf8'));
+    console.log("2. New Buffer:");
+    var arrData = JSON.stringify(data);
+    var buf = new Buffer(arrData);
+    console.log('- Buffer: ', buf);
+    console.log('- Decoder: ', buf.toString('utf8'));
+
+
 
     //console.log( "Decode: " + buff.toString('hex'));
 });
