@@ -13,7 +13,7 @@ var client = dgram.createSocket('udp4', function(data){
     var arrData = JSON.stringify(data);
     var buf = new Buffer(arrData).toString('ascii');
 
-    console.log("Data decoder:", buf);
+    console.log("Data decoder:", typeof data, data.toString('utf8'));
 
     //console.log( "Decode: " + buff.toString('hex'));
 });
