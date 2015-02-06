@@ -6,7 +6,8 @@
 * Listen UDP from Device
 * */
 var dgram = require('dgram');
-var buffer = new Buffer(11);
+//var buffer = new Buffer(11);
+var conv = require('binstring');
 
 var client = dgram.createSocket('udp4', function(data){
     console.log("1. Data Raw: ", data);
@@ -15,6 +16,8 @@ var client = dgram.createSocket('udp4', function(data){
     console.log("2. New Buffer:");
     var arrData = JSON.stringify(data);
     var buf = new Buffer(arrData);
+    console.log('- BinString 1: ', conv(arrData, { out:'hex' }));
+    console.log('- BinString 2: ', conv(arrData, { out:'utf8' }));
     console.log('- Buffer: ', typeof buf, buf);
     console.log('- Decoder: ', buf.toString('utf8'));
 
