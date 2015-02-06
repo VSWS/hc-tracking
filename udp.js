@@ -11,15 +11,15 @@ var conv = require('binstring');
 
 var client = dgram.createSocket('udp4', function(data){
     console.log("1. Data Raw: ", data);
-    console.log("- Decoder:", typeof data, data.toString('utf8'));
+    console.log("2. Decoder:", typeof data, data.toString('utf8'));
 
-    console.log("2. New Buffer:");
+    //console.log("2. New Buffer:");
     var arrData = JSON.stringify(data);
     var buf = new Buffer(arrData);
-    console.log('- BinString 1: ', conv(arrData, { out:'hex' }));
-    console.log('- BinString 2: ', conv(arrData, { out:'utf8' }));
-    console.log('- Buffer: ', typeof buf, buf);
-    console.log('- Decoder: ', buf.toString('utf8'));
+    //console.log('- BinString 1: ', conv(arrData, { out:'hex' }));
+    //console.log('- BinString 2: ', conv(arrData, { out:'utf8' }));
+    //console.log('- Buffer: ', typeof buf, buf);
+    //console.log('- Decoder: ', buf.toString('utf8'));
 
 
 
