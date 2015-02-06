@@ -11,7 +11,7 @@ var conv = require('binstring');
 
 var client = dgram.createSocket('udp4', function(data){
     console.log("1. Data Raw: ", data);
-    console.log("2. JSON Data: ", JSON.string(data));
+    console.log("2. JSON Data: ", JSON.stringify(data));
     console.log("3. Decoder:", typeof data, data.toString('utf8'));
 
     //console.log("2. New Buffer:");
