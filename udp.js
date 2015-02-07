@@ -43,7 +43,7 @@ for(var i=1; i < ports.length; i++){
     });
 
     server.bind(ports[i], function () {
-        server.addMembership('0.0.0.0');
+        client.addMembership('0.0.0.0');
     });
 }
 
