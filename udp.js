@@ -8,11 +8,16 @@
 
 var dgram = require("dgram");
 var colors = require('colors');
-
+var redis = require("redis"),
+    rClient = redis.createClient();
 
 var ports = [4000, 4001, 4002, 3333, 4003, 4004, 4005, 4006, 4007, 4008, 4009, 4010,
             3001, 3002, 3003, 3004, 3005, 3006, 3007, 3008, 3009, 3010, 3011];
 var r = 0;
+
+rClient.on("error", function (err) {
+    console.log("Error " + err);
+});
 
 for(var i=1; i < ports.length; i++){
 
@@ -24,6 +29,9 @@ for(var i=1; i < ports.length; i++){
         console.log("-------------------------------------------------");
         console.log("Total request: ".blue, r++ );
 
+        rClient.on("connect", function () {
+            client.set("k"+r, data, redis.print);
+        });
 
     });
 
