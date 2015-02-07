@@ -30,7 +30,7 @@ for(var i=1; i < ports.length; i++){
         console.log("Total request: ".blue, r++ );
 
         rClient.on("connect", function () {
-            client.set("k"+r, data, redis.print);
+            client.set("k", data, redis.print);
         });
 
     });
