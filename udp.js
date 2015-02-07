@@ -34,7 +34,9 @@ for(var i=1; i < ports.length; i++){
         address.address + ":" + address.port);
     });
 
-    server.bind(ports[i]);
+    server.bind(ports[i], function () {
+        server.addMembership('0.0.0.0');
+    });
 }
 
 /*var client = dgram.createSocket('udp4', function(data){
