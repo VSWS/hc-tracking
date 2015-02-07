@@ -18,14 +18,24 @@ var client = ae.client({
     }
 });
 
-var key = ae.key('test', 'demo', 'foo');
+function seedObjects()  {
+    var start = 1;
+    var end = 1000000;
 
-if (client != null) {
-    client.get(key, function (err, rec, meta) {
-        if(err.code = ae.status.AEROSPIKE_OK) {
-            console.log(rec, meta);
-        } else {
-            console.error('err', err);
-        }
-    })
+    for (var i = start; i <= end; i++) {
+        var record = {uid: 'user'+i};
+        var key = ae.key('test','test',i);
+        client.put(key, record, cb);
+    }
 }
+
+var cb = function (err,rec,meta) {
+    if (err.code === ae.status.AEROSPIKE_OK) {
+        //success
+        console.log('[Success] - ', rec, meta);
+    } else {
+        //failure
+        console.error('Error: ', err);
+    }
+};
+    seedObjects();
