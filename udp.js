@@ -3,7 +3,7 @@
  */
 
 /*
-* Listen UDP from Device
+* Listen UDP from Device: 128.199.126.250
 * */
 
 var dgram = require("dgram");
@@ -31,10 +31,10 @@ for(var i=1; i < ports.length; i++){
         client.close();
     });
     //
-    //client.on("message", function (msg, rinfo) {
-    //    console.log("Server got: ".yellow + msg + " from " +
-    //    rinfo.address + ":" + rinfo.port);
-    //});
+    client.on("message", function (msg, rinfo) {
+        console.log("Server got: ".yellow + msg + " from " +
+        rinfo.address + ":" + rinfo.port);
+    });
 
     //client.on("listening", function () {
     //    var address = client.address();
