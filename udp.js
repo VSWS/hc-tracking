@@ -29,10 +29,7 @@ for(var i=1; i < ports.length; i++){
         console.log("-------------------------------------------------");
         console.log("Total request: ".blue, r++ );
 
-        rClient.on("connect", function () {
-            client.set("k", data, redis.print);
-            console.log("Insert Redis!");
-        });
+        rClient.hset("raw", "row"+r, data, redis.print);
 
     });
 
