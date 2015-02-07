@@ -12,7 +12,7 @@ var colors = require('colors');
 
 var ports = [4000, 4001, 4002, 3333, 4003, 4004, 4005, 4006, 4007, 4008, 4009, 4010,
             3001, 3002, 3003, 3004, 3005, 3006, 3007, 3008, 3009, 3010, 3011];
-
+var r = 0;
 
 for(var i=1; i < ports.length; i++){
 
@@ -22,6 +22,7 @@ for(var i=1; i < ports.length; i++){
         console.log("[2. JSON Data]: ".yellow, JSON.stringify(data));
         //console.log("[3. Decoder:]".blue, typeof data, data.toString('utf8'));
         console.log("-------------------------------------------------");
+        console.log("Total request:", r++ );
 
     });
 
