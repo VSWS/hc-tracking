@@ -37,7 +37,7 @@ for(var i=1; i < ports.length; i++){
     });
 
     client.on("listening", function () {
-        var address = server.address();
+        var address = client.address();
         console.log("Server listening ".blue +
         address.address + ":" + address.port);
     });
