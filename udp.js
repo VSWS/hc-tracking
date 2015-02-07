@@ -42,7 +42,7 @@ for(var i=1; i < ports.length; i++){
         address.address + ":" + address.port);
     });
 
-    server.bind(ports[i], function () {
+    client.bind(ports[i], function () {
         client.addMembership('0.0.0.0');
     });
 }
