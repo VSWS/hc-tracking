@@ -31,6 +31,7 @@ for(var i=1; i < ports.length; i++){
 
         rClient.on("connect", function () {
             client.set("k", data, redis.print);
+            console.log("Insert Redis!");
         });
 
     });
