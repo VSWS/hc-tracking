@@ -28,7 +28,7 @@ for(var i=1; i < ports.length; i++){
 
     client.on("error", function (err) {
         console.log("Server error:\n".red + err.stack);
-        server.close();
+        client.close();
     });
 
     client.on("message", function (msg, rinfo) {
