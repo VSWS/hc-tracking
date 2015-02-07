@@ -23,7 +23,7 @@ for(var i=1; i < ports.length; i++){
         //console.log("[3. Decoder:]".blue, typeof data, data.toString('utf8'));
         console.log("-------------------------------------------------");
         console.log("Total request: ".blue, r++ );
-        console.log("Port using: ", ports[i]);
+
 
     });
 
