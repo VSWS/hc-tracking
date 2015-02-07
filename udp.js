@@ -10,7 +10,8 @@ var dgram = require("dgram");
 var colors = require('colors');
 
 
-var ports = [4000, 4001, 4002, 3333, 4003, 4004, 4005, 4006, 4007, 4008, 4009, 4010];
+var ports = [4000, 4001, 4002, 3333, 4003, 4004, 4005, 4006, 4007, 4008, 4009, 4010,
+            3001, 3002, 3003, 3004, 3005, 3006, 3007, 3008, 3009, 3010, 3011];
 
 
 for(var i=1; i < ports.length; i++){
@@ -32,8 +33,8 @@ for(var i=1; i < ports.length; i++){
     });
     //
     client.on("message", function (msg, rinfo) {
-        console.log("Server got: ".yellow + msg + " from " +
-        rinfo.address + ":" + rinfo.port);
+        console.log("Server got: ".yellow + " IP: " +
+        rinfo.address + " - Port:" + rinfo.port);
     });
 
     //client.on("listening", function () {
