@@ -9,11 +9,12 @@ var dgram = require('dgram');
 var colors = require('colors');
 //var buffer = new Buffer(11);
 var conv = require('binstring');
-var ports = [4000, 4001, 4002, 4003, 4004, 4005, 4006, 4007, 4008, 4009, 4010];
+var ports = [4000, 4001, 4002, 3333, 4003, 4004, 4005, 4006, 4007, 4008, 4009, 4010];
 
 
 for(var i=1; i < ports.length; i++){
     console.log("Start listen port ",i,":",ports[i]);
+
     var client = dgram.createSocket('udp4', function(data){
         console.log("[1. Data Raw]: ".green, data);
         console.log("[2. JSON Data]: ".yellow, JSON.stringify(data));
