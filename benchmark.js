@@ -7,11 +7,11 @@ var cluster = require('cluster');
 var numCPUs = require('os').cpus().length;
 
 var dgram = require('dgram');
-var message = new Buffer("Some bytes hello world bo bo bo world:");
+var message = new Buffer("Some bytes hello world bo bo bo world HEHEHEHE ahhaha hohoho hehe:");
 var client = dgram.createSocket("udp4");
 var async = require('async');
 
-var max = 500;
+var max = 1000;
 var arr = [];
 
 for (var i = 0; i < max; i++) {
@@ -33,7 +33,7 @@ var q = async.queue(function(index, cb){
 
 if (cluster.isMaster) {
     // Fork workers.
-    for (var i = 0; i < 40; i++) {
+    for (var i = 0; i < 50; i++) {
         cluster.fork();
     }
 
