@@ -21,7 +21,7 @@ rClient.on("error", function (err) {
 });
 
 for(var i=0; i < ports.length; i++){
-    
+
     var client = dgram.createSocket('udp4', function(data){
         console.log("")
         console.log("[1. Data Raw]: ".green, data);
@@ -30,7 +30,7 @@ for(var i=0; i < ports.length; i++){
         console.log("-------------------------------------------------");
 
 
-        //rClient.hset("raw", "row"+r, data, redis.print);
+        rClient.hset("raw", "data"+r, data, redis.print);
 
     });
 
