@@ -25,6 +25,7 @@ rClient.on("error", function (err) {
 
 
 var currentTime = d.getTime();
+console.log("Current Time:", currentTime);
 var ttl;
 for(var i=0; i < ports.length; i++){
 
