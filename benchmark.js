@@ -1,3 +1,4 @@
+'use strict'
 /**
  * Created by tungtouch on 2/9/15.
  */
@@ -8,24 +9,21 @@ var async = require('async');
 
 var max = 1000;
 var arr = [];
-var item = 0;
 
 for (var i = 0; i < max; i++) {
-    benchmark(i);
-    if(i=max){
-        client.close();
-    }
+    arr.push(i);
 }
 
-function benchmark(item){
 
-    client.send(message, 0, message.length, 4444, "128.199.126.250", function (err, result) {
-        console.log("OK: ", item);
-        if(err){
-            console.log("err: ",err);
-        }
-        if(result){
-            console.log("Result:", result);
-        }
-    });
-}
+var q = async.queue(function(index, cb){
+    setTimeout(function () {
+        client.send(message, 0, message.length, 4444, "128.199.126.250", function (err) {
+            console.log("Request : ", index);
+            cb(err);
+        });
+    }, 50);
+});
+
+q.push(arr);
+
+console.log("Starting Benchmark!");
