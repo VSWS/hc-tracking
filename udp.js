@@ -30,12 +30,13 @@ var ttl;
 for(var i=0; i < ports.length; i++){
 
     client = dgram.createSocket('udp4', function(data){
-        ttl = d.getTime() - currentTime;
+        var ttl = d.getDate();
+
         console.log("[1. Data Raw]: ".green, data);
         console.log("[2. JSON Data]: ".yellow, JSON.stringify(data));
         //console.log("[3. Decoder:]".blue, typeof data, data.toString('utf8'));
         console.log("-------------------------------------------------");
-        console.log("Total request: ".blue, r++, ttl );
+        console.log("Total request: ".blue, r++, ttl - currentTime);
 
         rClient.hset("raw", "data"+r, data, redis.print);
 
