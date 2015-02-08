@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/VSWS/hc-tracking",
   "dependencies": {
+    "async": "^0.9.0",
     "colors": "^1.0.3",
     "redis": "^0.12.1"
   }

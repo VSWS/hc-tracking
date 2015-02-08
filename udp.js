@@ -8,6 +8,7 @@
 
 var dgram = require("dgram");
 var colors = require('colors');
+var async = require('async');
 var redis = require("redis"),
     rClient = redis.createClient();
 
@@ -20,7 +21,7 @@ rClient.on("error", function (err) {
 });
 
 for(var i=0; i < ports.length; i++){
-
+    
     var client = dgram.createSocket('udp4', function(data){
         console.log("")
         console.log("[1. Data Raw]: ".green, data);
