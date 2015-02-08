@@ -30,7 +30,7 @@ var ttl;
 for(var i=0; i < ports.length; i++){
 
     client = dgram.createSocket('udp4', function(data){
-        var ttl = d.getDate();
+         ttl = d.getDate();
 
         console.log("[1. Data Raw]: ".green, data);
         console.log("[2. JSON Data]: ".yellow, JSON.stringify(data));
