@@ -26,11 +26,11 @@ rClient.on("error", function (err) {
 
 var currentTime = d.getTime();
 console.log("Current Time:", currentTime);
-var ttl;
+
 for(var i=0; i < ports.length; i++){
 
     client = dgram.createSocket('udp4', function(data){
-         ttl = d.getDate();
+        var ttl = d.getTime();
 
         console.log("[1. Data Raw]: ".green, data);
         console.log("[2. JSON Data]: ".yellow, JSON.stringify(data));
