@@ -27,7 +27,7 @@ for(var i=0; i < ports.length; i++){
         console.log("[2. JSON Data]: ".yellow, JSON.stringify(data));
         //console.log("[3. Decoder:]".blue, typeof data, data.toString('utf8'));
         console.log("-------------------------------------------------");
-        console.log("Total request: ".blue, r++ );
+
 
         //rClient.hset("raw", "row"+r, data, redis.print);
 
@@ -43,6 +43,7 @@ for(var i=0; i < ports.length; i++){
     client.on("message", function (msg, rinfo) {
         console.log("Server got: ".yellow + " IP: " +
         rinfo.address + " - Port:" + rinfo.port);
+        console.log("Total request: ".blue, r++ );
     });
 
     //client.on("listening", function () {

@@ -5,7 +5,7 @@ var dgram = require('dgram');
 var message = new Buffer("Some bytes:");
 var client = dgram.createSocket("udp4");
 
-var max = 5;
+var max = 1000;
 
 for (var i = 0; i < max; i++) {
     benchmark(i);
