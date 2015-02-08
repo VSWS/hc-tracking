@@ -21,7 +21,7 @@ var q = async.queue(function(index, cb){
             console.log("Request : ", index);
             cb(err);
         });
-    }, 20);
+    }, 100);
 });
 
 q.push(arr);
