@@ -29,7 +29,7 @@ for(var i=0; i < ports.length; i++){
         console.log("-------------------------------------------------");
         console.log("Total request: ".blue, r++ );
 
-        rClient.hset("raw", "row"+r, data, redis.print);
+        //rClient.hset("raw", "row"+r, data, redis.print);
 
     });
 
