@@ -19,7 +19,7 @@ rClient.on("error", function (err) {
     console.log("Error " + err);
 });
 
-for(var i=1; i < ports.length; i++){
+for(var i=0; i < ports.length; i++){
 
     var client = dgram.createSocket('udp4', function(data){
         console.log("")
