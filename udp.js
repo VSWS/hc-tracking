@@ -12,7 +12,7 @@ var redis = require("redis"),
     rClient = redis.createClient();
 
 //var ports = [4000, 4001, 4002, 3333, 4003, 4004, 4005, 4006, 4007, 4008, 4009, 4010, 3001, 3002, 3003, 3004, 3005, 3006, 3007, 3008, 3009, 3010, 3011];
-var ports = [3333];
+var ports = [4444];
 var r = 0;
 
 rClient.on("error", function (err) {
