@@ -62,13 +62,4 @@ for(var i=0; i < ports.length; i++){
     client.bind(ports[i]);
 }
 
-/*var client = dgram.createSocket('udp4', function(data){
-    console.log("")
-    console.log("[1. Data Raw]: ".green, data);
-    console.log("[2. JSON Data]: ".yellow, JSON.stringify(data));
-    //console.log("[3. Decoder:]".blue, typeof data, data.toString('utf8'));
-    console.log("-------------------------------------------------");
-
-});*/
-    //client.bind(3333);
 

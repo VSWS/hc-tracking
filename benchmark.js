@@ -11,7 +11,7 @@ var message = new Buffer("Some bytes hello world bo bo bo world HEHEHEHE ahhaha 
 var client = dgram.createSocket("udp4");
 var async = require('async');
 
-var max = 1000;
+var max = 10000;
 var arr = [];
 
 for (var i = 0; i < max; i++) {
@@ -29,7 +29,7 @@ var q = async.queue(function(index, cb){
             }
             cb(err);
         });
-    }, 100);
+    }, 10);
 });
 
 
