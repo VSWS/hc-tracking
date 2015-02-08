@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/VSWS/hc-tracking/issues"
   },
-  "homepage": "https://github.com/VSWS/hc-tracking"
+  "homepage": "https://github.com/VSWS/hc-tracking",
+  "dependencies": {
+    "colors": "^1.0.3",
+    "redis": "^0.12.1"
+  }
 }
