@@ -2,6 +2,10 @@
 /**
  * Created by tungtouch on 2/9/15.
  */
+
+var cluster = require('cluster');
+var numCPUs = require('os').cpus().length;
+
 var dgram = require('dgram');
 var message = new Buffer("Some bytes:");
 var client = dgram.createSocket("udp4");
@@ -14,6 +18,7 @@ for (var i = 0; i < max; i++) {
     arr.push(i);
 }
 
+console.log("Num CPU:", numCPUs);
 
 var q = async.queue(function(index, cb){
     setTimeout(function () {
@@ -24,6 +29,20 @@ var q = async.queue(function(index, cb){
     }, 100);
 });
 
-q.push(arr);
 
+
+if (cluster.isMaster) {
+    // Fork workers.
+    for (var i = 0; i < numCPUs; i++) {
+        cluster.fork();
+    }
+
+    cluster.on('exit', function(worker, code, signal) {
+        console.log('worker ' + worker.process.pid + ' died');
+    });
+} else {
+    // Workers can share any TCP connection
+    // In this case its a HTTP server
+    q.push(arr);
+}
 console.log("Starting Benchmark!");
