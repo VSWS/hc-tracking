@@ -29,14 +29,14 @@ var q = async.queue(function(index, cb){
             }
             cb(err);
         });
-    }, 10);
+    }, 20);
 });
 
 
 
 if (cluster.isMaster) {
     // Fork workers.
-    for (var i = 0; i < 40; i++) {
+    for (var i = 0; i < 20; i++) {
         cluster.fork();
     }
 
