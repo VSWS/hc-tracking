@@ -29,7 +29,7 @@ var q = async.queue(function(index, cb){
             }
             cb(err);
         });
-    }, 20);
+    }, 50);
 });
 
 
