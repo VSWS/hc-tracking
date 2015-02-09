@@ -9,19 +9,11 @@ var message = new Buffer("Some bytes hello world bo bo bo world HEHEHEHE ahhaha 
 var async = require('async');
 
 var max = 200000;
-var arr = [];
+
 
 for (var i = 0; i < max; i++) {
-    arr.push(i);
+    rClient.hset("raw", "data"+i, message, redis.print);
 }
-console.log("Array:", arr);
-var q = async.queue(function(index, cb){
-    setTimeout(function () {
-        rClient.hset("raw", "data"+index, message, redis.print);
-        console.log("Data", index);
-    }, 10);
-});
 
-q.push(arr);
 
 console.log("Starting Benchmark!");
