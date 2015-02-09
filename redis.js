@@ -13,7 +13,7 @@ server = http.createServer(function (request, response) {
         "Content-Type": "text/plain"
     });
     console.log("Insert data", r);
-    for(i=0; i<1000000; i++){
+    for(i=0; i<100000; i++){
         redis_client.hset("raw", "data"+i, message, redis_client.print);
     }
 }).listen(6666);
