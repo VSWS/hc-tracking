@@ -1,11 +1,11 @@
-# VERSION 0.2
-# DOCKER-VERSION 0.3.4
 # To build:
-    # 1. Install docker (http://docker.io)
+# 1. Install docker (http://docker.io)
 # 2. Checkout source: git@github.com:gasi/docker-node-hello.git
 # 3. Build container: docker build .
 
     FROM centos:6.6
+
+    MAINTAINER Tung Touch <tungnguyen@vsoft.vn>
 
 # Dependencies system .
     RUN \
@@ -15,7 +15,7 @@
 
 # Install dependencies App
 
-RUN \
+    RUN \
 
 # -- Install Node.js
     cd /tmp && \
@@ -55,7 +55,7 @@ RUN \
 # WORKDIR /data
 
 
-# App
+# Copy source app
 ADD . /src
 
 # Install app dependencies
