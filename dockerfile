@@ -16,7 +16,6 @@ RUN \
 # Dependencies App
 
 
-
 # App
 ADD . /src
 
@@ -24,4 +23,4 @@ ADD . /src
 RUN cd /src; npm install
 
 EXPOSE  4444
-CMD ["node", "/src/udp.js"];
+CMD ["node", "/src/udp.js"]
