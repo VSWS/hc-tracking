@@ -4,7 +4,9 @@
  */
 
 var http = require("http"), server, i;
-var message = new Buffer("Some bytes hello world bo bo bo world HEHEHEHE ahhaha hohoho hehe ban kinh dai bakbakabk efefe");
+var message = new Buffer("Some bytes hello world bo bo bo world HEHEHEHE " +
+                        "ahhaha hohoho hehe ban kinh dai bakbakabk " +
+                        "oh yeahh oh yeahh oekeke efefe");
 var redis_client = require("redis").createClient();
 var r = 0;
 server = http.createServer(function (request, response) {
