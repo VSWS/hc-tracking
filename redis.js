@@ -1,6 +1,3 @@
-/**
- * Created by tungtouch on 2/9/15.
- */
 'use strict'
 /**
  * Created by tungtouch on 2/9/15.
