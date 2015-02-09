@@ -13,6 +13,7 @@ var max = 200000;
 
 for (var i = 0; i < max; i++) {
     rClient.hset("raw", "data"+i, message, redis.print);
+    console.log("Insert Data:", i);
 }
 
 
