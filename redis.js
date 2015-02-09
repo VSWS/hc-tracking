@@ -12,7 +12,7 @@ server = http.createServer(function (request, response) {
     response.writeHead(200, {
         "Content-Type": "text/plain"
     });
-    redis_client.hset("raw", "data"+r, message, redis.print);
+    redis_client.hset("raw", "data"+r, message, redis_client.print);
     redis_client.incr("requests", function (err, reply) {
         response.write(reply+'\n');
         response.end();
