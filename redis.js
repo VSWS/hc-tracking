@@ -8,7 +8,7 @@ var rClient = redis.createClient();
 var message = new Buffer("Some bytes hello world bo bo bo world HEHEHEHE ahhaha hohoho hehe ban kinh dai bakbakabk efefe");
 var async = require('async');
 
-var max = 2000000;
+var max = 200000;
 var arr = [];
 
 for (var i = 0; i < max; i++) {
