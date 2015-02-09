@@ -9,8 +9,13 @@
 
 # Dependencies system .
     RUN \
-    yum groupinstall "Development tools" -y -y && \
-    yum install epel-release -y -y && \
+    yum install wget -y && \
+    yum update -y && \
+    cd /tmp && \
+    wget http://download.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm && \
+    rpm -ivh epel-release-6-8.noarch.rpm && \
+    #yum install epel-release -y && \
+    yum groupinstall "Development tools" -y && \
     yum install wget -y && \
     yum update -y
 
