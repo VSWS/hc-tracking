@@ -12,11 +12,9 @@ server = http.createServer(function (request, response) {
     response.writeHead(200, {
         "Content-Type": "text/plain"
     });
+    consol.log("Insert data", r);
     redis_client.hset("raw", "data"+r, message, redis_client.print);
-    redis_client.incr("requests", function (err, reply) {
-        response.write(reply+'\n');
-        response.end();
-    });
+
 }).listen(6666);
 
 server.on('error', function(err){
