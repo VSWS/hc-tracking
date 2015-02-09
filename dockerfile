@@ -14,7 +14,7 @@ RUN \
     yum install -y redis && \
     yum install -y npm && \
     yum install -y nodejs && \
-    yum update &&
+    yum update
 
 # App
 ADD . /src
