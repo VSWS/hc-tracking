@@ -14,7 +14,7 @@ server = http.createServer(function (request, response) {
     });
     console.log("Insert data", r);
     for(i=0; i<100000; i++){
-        redis_client.hset("raw", "data"+i, message, redis_client.print);
+        redis_client.hset("raw", "data"+'-'+r+'-'+i, message, redis_client.print);
     }
 }).listen(6666);
 
