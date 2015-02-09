@@ -1,4 +1,4 @@
-# To build:
+# Build:
 # 1. Install docker (http://docker.io)
 # 2. Checkout source: git@github.com:gasi/docker-node-hello.git
 # 3. Build container: docker build .
