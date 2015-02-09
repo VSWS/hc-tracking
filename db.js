@@ -4,7 +4,7 @@
 
 var ae = require('aerospike');
 
-// Connect cluster
+// Connect clusters
 var client = ae.client({
     hosts: [ { addr: 'localhost', port: 3000} ]
 }).connect(function (res) {
