@@ -11,6 +11,7 @@ FROM centos:6.6
 RUN \
     yum groupinstall -y "Development tools" && \
     yum install -y epel-release && \
+    yum install -y redis && \
     yum install -y npm && \
     yum install -y nodejs && \
     yum update &&
