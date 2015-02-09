@@ -9,9 +9,9 @@
 
 # Dependencies system .
     RUN \
-    yum groupinstall "Development tools" && \
-    yum install epel-release && \
-    yum update
+    yum groupinstall "Development tools" -y && \
+    yum install epel-release -y && \
+    yum update -y
 
 # Install dependencies App
 
