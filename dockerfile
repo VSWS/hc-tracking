@@ -7,14 +7,15 @@
 
 FROM centos:6.6
 
-# Dependencies
+# Dependencies system
 RUN \
-    yum groupinstall "Development tools" \
-    yum install epel-release \
-    yum install redis \
-    yum install npm \
-    yum install nodejs \
+    yum groupinstall "Development tools" && \
+    yum install epel-release && \
     yum update
+
+# Dependencies App
+
+
 
 # App
 ADD . /src
