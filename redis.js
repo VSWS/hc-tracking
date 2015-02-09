@@ -6,8 +6,9 @@
 var http = require("http"), server;
 var message = new Buffer("Some bytes hello world bo bo bo world HEHEHEHE ahhaha hohoho hehe ban kinh dai bakbakabk efefe");
 var redis_client = require("redis").createClient();
-
+var r = 0;
 server = http.createServer(function (request, response) {
+    r++;
     response.writeHead(200, {
         "Content-Type": "text/plain"
     });
