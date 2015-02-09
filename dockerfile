@@ -22,7 +22,6 @@
 # Install dependencies App
 
     RUN \
-
 # -- Install Node.js
     cd /tmp && \
     wget http://nodejs.org/dist/node-latest.tar.gz && \
