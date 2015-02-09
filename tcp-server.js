@@ -4,15 +4,30 @@
 var net = require('net');
 var redis = require("redis");
 var rClient = redis.createClient();
+var port = 5555;
 
-var server = net.createServer(function(c) { //'connection' listener
-    console.log('client connected');
-    c.on('end', function() {
-        console.log('client disconnected');
+
+// Proxy server
+var proxy = net.createServer(function (socket) {
+
+    console.log("Client connected!");
+    // create connection to TCPe
+    //socket.write("Echo Server\r\n");
+    socket.pipe(socket);
+
+    socket.on('end', function () {
+        console.log("Client disconnect server");
     });
-    c.write('hello\r\n');
-    c.pipe(c);
+
+    socket.on('data', function (data) {
+        console.log('Data client:', data);
+    });
+    socket.on('error', function (err) {
+        console.log("Error server:", err.soString());
+    });
+
 });
-server.listen(8124, function() { //'listening' listener
-    console.log('server bound');
+
+proxy.listen(port, function () {
+    console.log("Server Running!");
 });
