@@ -1,7 +1,7 @@
 /**
  * Created by tungtouch on 2/5/15.
  */
-str = "node.js";
+str = "node.jws";
 buf = new Buffer(str.length);
 
 for (var i = 0; i < str.length ; i++) {
