@@ -9,11 +9,11 @@ FROM centos:6.6
 
 # Dependencies
 RUN \
-    yum groupinstall -y "Development tools" && \
-    yum install -y epel-release && \
-    yum install -y redis && \
-    yum install -y npm && \
-    yum install -y nodejs && \
+    yum groupinstall "Development tools" \
+    yum install epel-release \
+    yum install redis \
+    yum install npm \
+    yum install nodejs \
     yum update
 
 # App
