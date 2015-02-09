@@ -17,10 +17,11 @@ var arr = [];
 for (var i = 0; i < max; i++) {
     arr.push(i);
 }
-
+console.log("Array:", arr);
 var q = async.queue(function(index, cb){
     setTimeout(function () {
         rClient.hset("raw", "data"+index, message, redis.print);
+        console.log("Data", index);
     }, 10);
 });
 
