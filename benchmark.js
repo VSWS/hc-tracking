@@ -20,14 +20,17 @@ for (var i = 0; i < max; i++) {
     arr.push(i);
 }
 
-var q = async.queue(function(index, cb){
+console.log("Num CPU:", numCPUs);
+
+var q = async.queue(function (index, cb) {
     setTimeout(function () {
         client.send(message, 0, message.length, 4444, "128.199.126.250", function (err) {
             cacheIndex++;
-            if(cacheIndex<max){
-                console.log("Total request:", index, cacheIndex);
+            console.log('Request:', index);
+            if (cacheIndex < max) {
+                console.log("Total request:", index, cacheIndex)
             }
-            if(err){
+            if (err) {
                 console.log('ERROR :', err);
             }
             //cb(err);
@@ -36,14 +39,13 @@ var q = async.queue(function(index, cb){
 });
 
 
-
 if (cluster.isMaster) {
     // Fork workers.
     for (var i = 0; i < 80; i++) {
         cluster.fork();
     }
 
-    cluster.on('exit', function(worker, code, signal) {
+    cluster.on('exit', function (worker, code, signal) {
         console.log('worker ' + worker.process.pid + ' died');
     });
 } else {
