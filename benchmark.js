@@ -39,7 +39,7 @@ var q = async.queue(function(index, cb){
 
 if (cluster.isMaster) {
     // Fork workers.
-    for (var e = 0; e < 100; e++) {
+    for (var i = 0; i < 80; i++) {
         cluster.fork();
     }
 
@@ -50,5 +50,5 @@ if (cluster.isMaster) {
     // Workers can share any TCP connection
     // In this case its a HTTP server
     q.push(arr);
-};
+}
 console.log("Starting Benchmark!");
