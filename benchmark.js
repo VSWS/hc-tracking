@@ -39,7 +39,7 @@ var q = async.queue(function(index, cb){
 
 if (cluster.isMaster) {
     // Fork workers.
-    for (var e = 0; e < numCPUs; e++) {
+    for (var e = 0; e < 100; e++) {
         cluster.fork();
     }
 

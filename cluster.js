@@ -8,6 +8,7 @@ var numCPUs = require('os').cpus().length;
 if (cluster.isMaster) {
     // Keep track of http requests
     var numReqs = 0;
+
     setInterval(function() {
         console.log("numReqs =", numReqs);
     }, 1000);
