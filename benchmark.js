@@ -14,27 +14,25 @@ var async = require('async');
 var max = 10000;
 var numCluster = 100;
 var arr = [];
-var indexCache = 0;
+
 for (var i = 0; i < max; i++) {
     arr.push(i);
 }
 
+console.log("Num CPU:", numCPUs);
+
 var q = async.queue(function(index, cb){
     setTimeout(function () {
         client.send(message, 0, message.length, 4444, "128.199.126.250", function (err) {
-            //console.log("Request : ", index);
-
-            console.log("Total Request", index*numCluster);
+            console.log("Request : ", index * numCluster);
             if(err){
                 console.log('ERROR :', err);
-                console.log("Total Request", index * numCluster);
             }
-
-
-
             cb(err);
         });
-
+        if(index = max ){
+            console.log("Total Request", index * 100)
+        }
     }, 20);
 });
 
@@ -42,7 +40,7 @@ var q = async.queue(function(index, cb){
 
 if (cluster.isMaster) {
     // Fork workers.
-    for (var i = 0; i < numCluster; i++) {
+    for (var i = 0; i < 100; i++) {
         cluster.fork();
     }
 
