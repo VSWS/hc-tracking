@@ -18,13 +18,13 @@ var arr = [];
 for (var i = 0; i < max; i++) {
     arr.push(i);
 }
-
+var a = 0;
 console.log("Num CPU:", numCPUs);
 
 var q = async.queue(function(index, cb){
     setTimeout(function () {
         client.send(message, 0, message.length, 4444, "128.199.126.250", function (err) {
-            console.log("Request : ", index * numCluster);
+            console.log("Request : ", a++);
             if(err){
                 console.log('ERROR :', err);
             }
