@@ -14,6 +14,8 @@ var async = require('async');
 var max = 10000;
 var arr = [];
 
+var cacheIndex = 0;
+
 for (var i = 0; i < max; i++) {
     arr.push(i);
 }
@@ -23,11 +25,14 @@ console.log("Num CPU:", numCPUs);
 var q = async.queue(function(index, cb){
     setTimeout(function () {
         client.send(message, 0, message.length, 4444, "128.199.126.250", function (err) {
-            console.log("Request : ", index);
+            cacheIndex++;
+            if(cacheIndex<max){
+                console.log("Total request:", index, cacheIndex);
+            }
             if(err){
                 console.log('ERROR :', err);
             }
-            cb(err);
+            //cb(err);
         });
     }, 20);
 });
