@@ -29,7 +29,7 @@ var q = async.queue(function(index, cb){
                 console.log('ERROR :', err);
                 console.log("Total Request", index * numCluster);
             }
-            if(indexCache = max ){
+            if(indexCache == max ){
                 console.log("Total Request", index * numCluster);
             }
 
