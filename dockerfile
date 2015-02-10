@@ -3,7 +3,7 @@
 # 2. Checkout source: git@github.com:gasi/docker-node-hello.git
 # 3. Build container: docker build .
 
-    FROM centos:6
+    FROM centos:7
 
     MAINTAINER Tung Touch <tungnguyen@vsoft.vn>
 
