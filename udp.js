@@ -35,16 +35,16 @@ for(var i=0; i < ports.length; i++){
     //
     client.on("message", function (data, rinfo) {
 
-        console.log("[1. Data Raw]: ".green, data);
-        console.log("[2. JSON Data]: ".yellow, JSON.stringify(data));
+        //console.log("[Data Raw]: ".red, data);
+        //console.log("[2. JSON Data]: ".yellow, JSON.stringify(data));
         //console.log("[3. Decoder:]".blue, typeof data, data.toString('utf8'));
-        console.log("-------------------------------------------------");
-        console.log("Total request: ".blue, r++);
+        //console.log("-------------------------------------------------");
+        console.log("Request: ".blue, r++);
 
         rClient.hset("raw", "data"+r, data, redis.print);
 
-        console.log("Server got: ".yellow + " IP: " +
-        rinfo.address + " - Port:" + rinfo.port);
+        //console.log("Server got: ".yellow + " IP: " +
+        //rinfo.address + " - Port:" + rinfo.port);
     });
 
     //client.on("listening", function () {
