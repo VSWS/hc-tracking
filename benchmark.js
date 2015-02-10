@@ -20,11 +20,11 @@ for (var i = 0; i < max; i++) {
 }
 var a = 0;
 console.log("Num CPU:", numCPUs);
-
+//128.199.126.250
 var q = async.queue(function(index, cb){
     setTimeout(function () {
-        client.send(message, 0, message.length, 4444, "128.199.126.250", function (err) {
-            console.log("Request : ", (a++)*numCluster);
+        client.send(message, 0, message.length, 4444, "128.199.109.202", function (err) {
+            console.log("Request : ", a++);
             if(err){
                 console.log('ERROR :', err);
             }
@@ -37,7 +37,7 @@ var q = async.queue(function(index, cb){
 
 if (cluster.isMaster) {
     // Fork workers.
-    for (var i = 0; i < 100; i++) {
+    for (var i = 0; i < 50; i++) {
         cluster.fork();
     }
 
