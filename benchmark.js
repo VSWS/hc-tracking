@@ -14,7 +14,7 @@ var async = require('async');
 var max = 10000;
 var numCluster = 100;
 var arr = [];
-
+var indexCache = 0;
 for (var i = 0; i < max; i++) {
     arr.push(i);
 }
@@ -23,15 +23,19 @@ var q = async.queue(function(index, cb){
     setTimeout(function () {
         client.send(message, 0, message.length, 4444, "128.199.126.250", function (err) {
             //console.log("Request : ", index);
+            indexCache++;
+
             if(err){
                 console.log('ERROR :', err);
                 console.log("Total Request", index * numCluster);
             }
+            if(indexCache = max ){
+                console.log("Total Request", index * numCluster);
+            }
+
             cb(err);
         });
-        if(index = max ){
-            console.log("Total Request", index * numCluster);
-        }
+
     }, 20);
 });
 
