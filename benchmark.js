@@ -30,9 +30,6 @@ var q = async.queue(function(index, cb){
             }
             cb(err);
         });
-        if(index = max ){
-            console.log("Total Request", index * 100)
-        }
     }, 20);
 });
 
