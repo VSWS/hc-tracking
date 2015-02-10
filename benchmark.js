@@ -14,38 +14,33 @@ var async = require('async');
 var max = 10000;
 var arr = [];
 
-var cacheIndex = 0;
-
 for (var i = 0; i < max; i++) {
     arr.push(i);
 }
 
 console.log("Num CPU:", numCPUs);
 
-var q = async.queue(function (index, cb) {
+var q = async.queue(function(index, cb){
     setTimeout(function () {
         client.send(message, 0, message.length, 4444, "128.199.126.250", function (err) {
-            cacheIndex++;
-            console.log('Request:', index);
-            if (cacheIndex < max) {
-                console.log("Total request:", index, cacheIndex)
-            }
-            if (err) {
+            console.log("Request : ", index);
+            if(err){
                 console.log('ERROR :', err);
             }
-            //cb(err);
+            cb(err);
         });
     }, 20);
 });
 
 
+
 if (cluster.isMaster) {
     // Fork workers.
-    for (var i = 0; i < 80; i++) {
+    for (var i = 0; i < 100; i++) {
         cluster.fork();
     }
 
-    cluster.on('exit', function (worker, code, signal) {
+    cluster.on('exit', function(worker, code, signal) {
         console.log('worker ' + worker.process.pid + ' died');
     });
 } else {
