@@ -41,7 +41,7 @@ for(var i=0; i < ports.length; i++){
         //console.log("-------------------------------------------------");
         console.log("Request: ".blue, r++);
 
-        rClient.hset("raw", "data"+r, data, redis.print);
+        //rClient.hset("raw", "data"+r, data, redis.print);
 
         //console.log("Server got: ".yellow + " IP: " +
         //rinfo.address + " - Port:" + rinfo.port);
