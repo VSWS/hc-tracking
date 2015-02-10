@@ -12,6 +12,7 @@ var client = dgram.createSocket("udp4");
 var async = require('async');
 
 var max = 10000;
+var numCluster = 100;
 var arr = [];
 
 for (var i = 0; i < max; i++) {
@@ -26,9 +27,13 @@ var q = async.queue(function(index, cb){
             //console.log("Request : ", index);
             if(err){
                 console.log('ERROR :', err);
+                console.log("Total Request", index * numCluster);
             }
             cb(err);
         });
+        if(index = max ){
+            console.log("Total Request", index * numCluster);
+        }
     }, 20);
 });
 
@@ -36,7 +41,7 @@ var q = async.queue(function(index, cb){
 
 if (cluster.isMaster) {
     // Fork workers.
-    for (var i = 0; i < 100; i++) {
+    for (var i = 0; i < numCluster; i++) {
         cluster.fork();
     }
 
