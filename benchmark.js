@@ -24,7 +24,7 @@ console.log("Num CPU:", numCPUs);
 var q = async.queue(function(index, cb){
     setTimeout(function () {
         client.send(message, 0, message.length, 4444, "128.199.126.250", function (err) {
-            console.log("Request : ", a++);
+            console.log("Request : ", (a++)*numCluster);
             if(err){
                 console.log('ERROR :', err);
             }
