@@ -41,7 +41,7 @@ if (cluster.isMaster) {
             console.log("Tổng thời gian: ", second-1 + "s", " | Tổng số gói tin:", totalReqs);
             console.log(colors.cyan("Kết quả hệ thống: ", colors.bold(totalReqs / second)), " Thiết bị/giây ! \n");
 
-            process.exit(1);
+            //process.exit(1);
         }
     }, 1000);
 
