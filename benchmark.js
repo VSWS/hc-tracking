@@ -15,24 +15,10 @@ var max = 1000;
 var numCluster = 100;
 var arr = [];
 
-for (var i = 0; i < max; i++) {
-    arr.push(i);
-}
 var a = 0;
 console.log("Num CPU:", numCPUs);
 //[2GB]128.199.126.250 [8GB]128.199.109.202
 
-var q = async.queue(function(index, cb){
-    setTimeout(function () {
-        client.send(message, 0, message.length, 4444, "128.199.126.250", function (err) {
-            console.log("Request : ", a++);
-            if(err){
-                console.log('ERROR :', err);
-            }
-            cb(err);
-        });
-    }, 20);
-});
 
 
 
@@ -48,6 +34,16 @@ if (cluster.isMaster) {
 } else {
     // Workers can share any TCP connection
     // In this case its a HTTP server
-    q.push(arr);
+
+    for (var i = 0; i < max; i++) {
+        setTimeout(function () {
+            client.send(message, 0, message.length, 4444, "128.199.126.250", function (err) {
+                console.log("Request : ", a++);
+                if(err){
+                    console.log('ERROR :', err);
+                }
+            });
+        }, 20);
+    }
 }
 console.log("Starting Benchmark!");
