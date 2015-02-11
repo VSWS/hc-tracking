@@ -29,7 +29,7 @@ if (cluster.isMaster) {
     var numReqs = 0;
     var totalReqs = 0;
     var second = 0;
-    if(totalReqs == 10000) {
+    if(totalReqs != 10000) {
         setInterval(function() {
             console.log(
                 colors.red("Number Request: ", numReqs), " | ",
