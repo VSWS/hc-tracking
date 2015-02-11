@@ -32,7 +32,8 @@ function init() {
         var msg = FIFO.shift();
         rClient.hset("raw", "data"+index, msg);
         //console.log("msg", msg);
+        process.nextTick(init);
     }
     console.log("Outside");
-    setImmediate(init);
+
 }
