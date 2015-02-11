@@ -30,7 +30,7 @@ function init() {
     {
         index++;
         var msg = FIFO.shift();
-        rClient.hset("raw", "data"+index, msg);
+        rClient.hset("raw", "data"+index, msg+index);
         //console.log("msg", msg);
         //process.nextTick(init);
     }
