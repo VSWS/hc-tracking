@@ -39,7 +39,7 @@ for(var i=0; i < ports.length; i++){
 
     client.on("message", function (data, rinfo) {
         r++;
-        console.log("Message:", r, data);
+        //console.log("Message:", r, data);
         FIFO.push(data,r);
         //console.log("Number process: ", q.length());
         //console.log("Server got: ".yellow + " IP: " +
