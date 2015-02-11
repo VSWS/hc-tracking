@@ -3,7 +3,9 @@ var seatStateStore = require("./SeatStateStore");
 var redis = require("redis");
 var rClient = redis.createClient();
 var dgram = require("dgram");
+
 var FIFO = new d();
+
 fetcher();
 
 var udpserver = dgram.createSocket("udp4");
@@ -23,7 +25,7 @@ function fetcher () {
         var msg = FIFO.shift();
         console.log(msg);
         //rClient.hset("raw", "data"+index, msg);
-        //seatStateStore.parseMessage(msg);
+        seatStateStore.parseMessage(msg);
         process.nextTick(fetcher);
     }
 }
