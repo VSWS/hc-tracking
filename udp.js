@@ -10,6 +10,7 @@ var udpserver = dgram.createSocket("udp4");
 
 udpserver.on("message",
     function (msg, rinfo) {
+
         FIFO.push(msg);
     }
 );
@@ -21,7 +22,7 @@ function fetcher () {
         index++;
         var msg = FIFO.shift();
         console.log(msg);
-        rClient.hset("raw", "data"+index, msg);
+        //rClient.hset("raw", "data"+index, msg);
         //seatStateStore.parseMessage(msg);
         process.nextTick(fetcher);
     }
