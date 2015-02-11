@@ -31,7 +31,7 @@ var q = async.queue(function(index, cb){
             }
             cb(err);
         });
-    }, 2);
+    }, 1);
 });
 
 
