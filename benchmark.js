@@ -40,7 +40,7 @@ if (cluster.isMaster) {
     for (var i = 0; i < max; i++) {
         setTimeout(function () {
             client.send(message, 0, message.length, 4444, "128.199.126.250", function (err) {
-                //console.log("Request : ", a++, isCluster);
+                console.log("Request : ", a++, isCluster);
                 if(err){
                     console.log('ERROR :', err);
                 }
