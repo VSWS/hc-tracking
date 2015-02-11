@@ -29,7 +29,9 @@ if (cluster.isMaster) {
     var numReqs = 0;
     var totalReqs = 0;
     var second = 0;
-    if(totalReqs != 10000) {
+    if(totalReqs == 10000) {
+        console.log(colors.blue("Result benchmark: ", colors.bold(totalReqs / second)));
+    }else{
         setInterval(function() {
             console.log(
                 colors.red("Number Request: ", numReqs), " | ",
@@ -37,8 +39,6 @@ if (cluster.isMaster) {
                 colors.blue("Seconds: ", second++));
             numReqs = 0;
         }, 1000);
-    }else{
-        console.log(colors.blue("Result benchmark: ", colors.bold(totalReqs / second)));
     }
 // Count requestes
     function messageHandler(msg) {
