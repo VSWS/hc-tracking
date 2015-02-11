@@ -22,7 +22,8 @@ var a = 0;
 
 //[2GB]128.199.126.250 [8GB]128.199.109.202
 
-var q = async.queue(function(index, cb){
+var q = async.queue(function(index, cluster, cb){
+    console.log("Index: ", index, cluster);
     setTimeout(function () {
         client.send(message, 0, message.length, 4444, "128.199.126.250", function (err) {
             console.log("Request : ", a++);
@@ -48,7 +49,7 @@ if (cluster.isMaster) {
     });
 } else if (cluster.isWorker) {
     console.log('I am worker #' + cluster.worker.id);
-    q.push(arr);
+    q.push(arr,cluster.worker.id);
 } else {
 
     // Workers can share any TCP connection
