@@ -21,7 +21,7 @@ for (var i = 0; i < max; i++) {
         if(err){
             console.log('ERROR :', err);
         }
-        cb(err);
+        //cb(err);
     });
 }
 var a = 0;
