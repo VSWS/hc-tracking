@@ -32,13 +32,13 @@ if (cluster.isMaster) {
 
     setInterval(function() {
         console.log(
-            colors.red("Gói tin gửi hiện tại: ", numReqs), " | ",
+            colors.red("Gói tin gửi/s: ", numReqs), " | ",
             colors.yellow("Tổng số gói tin: ", totalReqs), " | ",
-            colors.blue("Seconds: ", second++));
+            colors.blue("Second: ", second++));
         numReqs = 0;
         if(totalReqs == 100000) {
             console.log(colors.cyan("\n-------------------------------"))
-            console.log(colors.cyan("Kết quả thử nghiệm: ", colors.bold(totalReqs / second)), " Thiết bị/giây ! \n");
+            console.log(colors.cyan("Kết quả hệ thống: ", colors.bold(totalReqs / second)), " Thiết bị/giây ! \n");
 
             process.exit(1);
         }
