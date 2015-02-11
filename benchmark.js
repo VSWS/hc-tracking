@@ -29,21 +29,19 @@ if (cluster.isMaster) {
     var numReqs = 0;
     var totalReqs = 0;
     var second = 0;
-    var flag = 0;
-    if(flag == 1) {
-        console.log(colors.blue("Result benchmark: ", colors.bold(totalReqs / second)));
-    }else{
-        setInterval(function() {
-            console.log(
-                colors.red("Number Request: ", numReqs), " | ",
-                colors.yellow("Total Request: ", totalReqs), " | ",
-                colors.blue("Seconds: ", second++));
-            numReqs = 0;
-            if(totalReqs == 100000) {
-                flag = 1;
-            }
-        }, 1000);
-    }
+
+    setInterval(function() {
+        console.log(
+            colors.red("Number Request: ", numReqs), " | ",
+            colors.yellow("Total Request: ", totalReqs), " | ",
+            colors.blue("Seconds: ", second++));
+        numReqs = 0;
+        if(totalReqs == 100000) {
+            console.log(colors.blue("Result benchmark: ", colors.bold(totalReqs / second)));
+            cluster.disconnect();
+        }
+    }, 1000);
+
 // Count requestes
     function messageHandler(msg) {
         if (msg.cmd && msg.cmd == 'notifyRequest') {
