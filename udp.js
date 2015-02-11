@@ -28,7 +28,8 @@ rClient.on("error", function (err) {
 });
 
 var q = async.queue(function (data, callback) {
-    //console.log("Success: ".blue, r++, " - " + data.data);
+    r++;
+    console.log("| Success: ".blue, r, " | - |" + data.data.yellow + '| - |' + q.length());
     saveData(r, data);
     callback();
 }, 50);
@@ -50,7 +51,7 @@ for(var i=0; i < ports.length; i++){
                 console.log("Error queue: ", err);
             }
         });
-        console.log("Number process: ", q.length());
+        //console.log("Number process: ", q.length());
         //console.log("Server got: ".yellow + " IP: " +
         //rinfo.address + " - Port:" + rinfo.port);
     });
