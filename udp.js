@@ -11,13 +11,17 @@ var colors = require('colors');
 var async = require('async');
 var redis = require("redis");
 var rClient = redis.createClient();
-var d = new Date();
 
 //var ports = [4000, 4001, 4002, 3333, 4003, 4004, 4005, 4006, 4007, 4008, 4009, 4010, 3001, 3002, 3003, 3004, 3005, 3006, 3007, 3008, 3009, 3010, 3011];
 var ports = [4444];
 var r = 0;
 
 var client = dgram.createSocket('udp4');
+
+function saveData(index, data){
+    rClient.hset("raw", "data"+index, data, redis.print);
+}
+
 
 rClient.on("error", function (err) {
     console.log("Error " + err);
@@ -27,43 +31,29 @@ var q = async.queue(function (data, callback) {
     console.log("Success: ".blue, r++, " - " + data.data);
     saveData(r, data);
     callback();
-}, 4);
+}, 10);
 
 for(var i=0; i < ports.length; i++){
 
-    console.log("Start listen port ",i,":",ports[i]);
+    console.log("Start listen port ",i,":", ports[i]);
 
     client.on("error", function (err) {
         console.log("Server error:\n".red + err.stack);
         client.close();
     });
-    //
+
+
     client.on("message", function (data, rinfo) {
 
-        //console.log("[Data Raw]: ".red, data);
-        //console.log("[2. JSON Data]: ".yellow, JSON.stringify(data));
-        //console.log("[3. Decoder:]".blue, typeof data, data.toString('utf8'));
-        //console.log("-------------------------------------------------");
-
         q.push({data: data}, function (err) {
-            console.log('finished processing foo');
+            if(err){
+                console.log("Error queue: ", err);
+            }
         });
-        q.running();
-        //
 
         //console.log("Server got: ".yellow + " IP: " +
         //rinfo.address + " - Port:" + rinfo.port);
     });
 
-    //client.on("listening", function () {
-    //    var address = client.address();
-    //    console.log("Server listening ".blue +
-    //    address.address + ":" + address.port);
-    //});
-
     client.bind(ports[i]);
-}
-
-function saveData(index, data){
-    rClient.hset("raw", "data"+index, data, redis.print);
 }
