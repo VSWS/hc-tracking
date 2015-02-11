@@ -11,7 +11,7 @@ var message = new Buffer("Some bytes hello world bo bo bo world HEHEHEHE ahhaha 
 var client = dgram.createSocket("udp4");
 var async = require('async');
 
-var max = 10000;
+var max = 5000;
 var numCluster = 100;
 var arr = [];
 
@@ -38,7 +38,7 @@ var q = async.queue(function(index, cb){
 
 if (cluster.isMaster) {
     // Fork workers.
-    for (var i = 0; i < 100; i++) {
+    for (var i = 0; i < numCluster; i++) {
         cluster.fork();
     }
 
