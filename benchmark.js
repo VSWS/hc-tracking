@@ -11,7 +11,7 @@ var message = new Buffer("Some bytes hello world bo bo bo world HEHEHEHE ahhaha 
 var client = dgram.createSocket("udp4");
 var async = require('async');
 
-var max = 10000;
+var max = 1000;
 var numCluster = 100;
 var arr = [];
 
@@ -34,10 +34,11 @@ if (cluster.isMaster) {
         console.log(
             colors.red("Gói tin gửi/s: ", numReqs), " | ",
             colors.yellow("Tổng số gói tin: ", totalReqs), " | ",
-            colors.blue("Thời gian: ", second++, "s"));
+            colors.blue("Thời gian: ", second++ +"s"));
         numReqs = 0;
         if(totalReqs == 100000) {
-            console.log(colors.cyan("\n-------------------------------"))
+            console.log(colors.cyan("\n-------------------------------"));
+            console.log("Tổng thời gian: ", second, " | Tổng số gói tin:", totalReqs);
             console.log(colors.cyan("Kết quả hệ thống: ", colors.bold(totalReqs / second)), " Thiết bị/giây ! \n");
 
             process.exit(1);
