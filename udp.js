@@ -51,7 +51,7 @@ for(var i=0; i < ports.length; i++){
         {
             var msg = FIFO.shift();
             console.log("Message: ", msg);
-            //process.nextTick(fetcher);
+            process.nextTick(fetcher);
         }
         //setImmediate(fetcher); //make this function continuously run
     }
