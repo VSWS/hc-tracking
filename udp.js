@@ -26,7 +26,7 @@ rClient.on("error", function (err) {
 var q = async.queue(function (data, callback) {
     rClient.hset("raw", "data"+data.index, data.data);
     callback();
-}, 10);
+});
 
 for(var i=0; i < ports.length; i++){
 
