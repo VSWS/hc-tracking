@@ -27,15 +27,17 @@ if (cluster.isMaster) {
 
     // Keep track of http requests
     var numReqs = 0;
-
+    var totalReqs = 0;
     setInterval(function() {
-        console.log("numReqs =", numReqs);
+        console.log("Total request =", totalReqs, "NumReq=", numReqs);
+        numReqs = 0;
     }, 1000);
 
 // Count requestes
     function messageHandler(msg) {
         if (msg.cmd && msg.cmd == 'notifyRequest') {
             numReqs += 1;
+            totalReqs +=1;
         }
     }
 
