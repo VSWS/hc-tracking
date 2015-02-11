@@ -30,5 +30,5 @@ function init() {
         rClient.hset("raw", "data"+index, msg);
         console.log("Success: ", index);
     }
-    setImmediate(fetcher);
+    setImmediate(init);
 };
