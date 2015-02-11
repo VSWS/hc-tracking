@@ -26,6 +26,7 @@ if (cluster.isMaster) {
     // Fork workers.
     for (var m = 0;  m < numCluster; m++) {
         cluster.fork();
+        console.log("Starting Benchmark Cluster: ", m);
     }
 
     cluster.on('exit', function(worker, code, signal) {
@@ -46,4 +47,4 @@ if (cluster.isMaster) {
         }, 20);
     }
 }
-console.log("Starting Benchmark!");
+
