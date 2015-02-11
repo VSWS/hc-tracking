@@ -16,7 +16,7 @@ var numCluster = 100;
 var arr = [];
 
 var a = 0;
-console.log("Num CPU:", numCPUs);
+
 //[2GB]128.199.126.250 [8GB]128.199.109.202
 
 
