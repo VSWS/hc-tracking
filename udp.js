@@ -23,6 +23,7 @@ function fetcher () {
     while (FIFO.length > 0)
     {
         index++;
+        console.log('index:', index);
         var msg = FIFO.shift();
         rClient.hset("raw", "data"+index, msg);
     }
