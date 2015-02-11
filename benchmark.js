@@ -11,20 +11,35 @@ var message = new Buffer("Some bytes hello world bo bo bo world HEHEHEHE ahhaha 
 var client = dgram.createSocket("udp4");
 var async = require('async');
 
-var max = 1000;
+var max = 3000;
 var numCluster = 50;
 var arr = [];
 
+for (var i = 0; i < max; i++) {
+    arr.push(i);
+}
 var a = 0;
 
 //[2GB]128.199.126.250 [8GB]128.199.109.202
 
+var q = async.queue(function(index, cb){
+    setTimeout(function () {
+        client.send(message, 0, message.length, 4444, "128.199.126.250", function (err) {
+            console.log("Request : ", a++);
+            if(err){
+                console.log('ERROR :', err);
+            }
+            cb(err);
+        });
+    }, 20);
+});
 
 
 
 if (cluster.isMaster) {
     // Fork workers.
-    for (var m = 0;  m < numCluster; m++) {
+    for (var m = 0; m < numCluster; m++) {
+        console.log("Starting Benchmark!", m);
         cluster.fork();
     }
 
@@ -34,16 +49,6 @@ if (cluster.isMaster) {
 } else {
     // Workers can share any TCP connection
     // In this case its a HTTP server
-
-    for (var i = 0; i < max; i++) {
-        setTimeout(function () {
-            client.send(message, 0, message.length, 4444, "128.199.126.250", function (err) {
-                console.log("Request : ", a++);
-                if(err){
-                    console.log('ERROR :', err);
-                }
-            });
-        }, 20);
-    }
+    q.push(arr);
 }
 
