@@ -2,13 +2,9 @@
  * Created by tungtouch on 2/5/15.
  */
 
-/*
-* Listen UDP from Device: 128.199.126.250
-* */
-
 var dgram = require("dgram");
 var colors = require('colors');
-var d = require('dequeue')
+var d = require('dequeue');
 var async = require('async');
 var redis = require("redis");
 var rClient = redis.createClient();
