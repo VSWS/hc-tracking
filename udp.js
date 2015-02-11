@@ -24,8 +24,8 @@ rClient.on("error", function (err) {
 });
 
 var q = async.queue(function (data, callback) {
-    //rClient.hset("raw", "data"+data.index, data.data);
-    console.log(data);
+    rClient.hset("raw", "data"+data.index, data.data);
+    //console.log(data);
     callback();
 });
 
@@ -41,7 +41,7 @@ for(var i=0; i < ports.length; i++){
 
     client.on("message", function (data, rinfo) {
         r++;
-        console.log("Success:" + r);
+       // console.log("Success:" + r);
 
         q.push({index: r, data: data}, function (err) {
             if(err){
