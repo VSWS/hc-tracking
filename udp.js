@@ -28,14 +28,8 @@ rClient.on("error", function (err) {
 });
 
 var q = async.queue(function (data, callback) {
-    r++;
-    console.log
-    ("Success:",
-        (" Record: "+ r).blue,
-        (" Data: " + data.data).red,
-        (' Process: ' + q.length()).yellow
-    );
-    saveData(r, data.data);
+
+    saveData(data.index, data.data);
     callback();
 }, 50);
 
@@ -50,13 +44,13 @@ for(var i=0; i < ports.length; i++){
 
 
     client.on("message", function (data, rinfo) {
-
-        q.push({data: data}, function (err) {
+        r++;
+        console.log(("Success:" + r).blue);
+        q.push({index: r, data: data}, function (err) {
             if(err){
                 console.log("Error queue: ", err);
             }
         });
-        console.log((' Not Running: ' + q.idle()).cyan);
         //console.log("Number process: ", q.length());
         //console.log("Server got: ".yellow + " IP: " +
         //rinfo.address + " - Port:" + rinfo.port);
