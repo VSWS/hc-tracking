@@ -75,7 +75,7 @@ if (cluster.isMaster) {
                 }
                 cb(err);
             });
-        }, 20);
+        }, 10);
     });
 
     q.push(arr);
