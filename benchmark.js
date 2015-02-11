@@ -24,7 +24,7 @@ console.log("Num CPU:", numCPUs);
 
 if (cluster.isMaster) {
     // Fork workers.
-    for (var i = 0; i < numCluster; i++) {
+    for (var m = 0;  m < numCluster; m++) {
         cluster.fork();
     }
 
