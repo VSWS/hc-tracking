@@ -53,4 +53,7 @@ if (cluster.isMaster) {
     // In this case its a HTTP server
     q.push(arr);
 }
+cluster.on('online', function(worker) {
+    console.log("Yay, the worker responded after it was forked", worker);
+});
 
