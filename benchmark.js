@@ -52,7 +52,7 @@ if (cluster.isMaster) {
 
 } else {
     var q = async.queue(function(index, cb){
-        console.log("Index: ", index);
+        //console.log("Index: ", index);
         setTimeout(function () {
             client.send(message, 0, message.length, 4444, "128.199.126.250", function (err) {
                 //console.log("Request : ", a++);
