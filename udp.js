@@ -31,9 +31,9 @@ var q = async.queue(function (data, callback) {
     r++;
     console.log
     ("Success:",
-        (" |Record: "+ r).blue,
-        (' |Process: ' + q.length()).yellow,
-        (" |Data: " + data.data).red
+        (" Record: "+ r).blue,
+        (" Data: " + data.data).red,
+        (' Process: ' + q.length()).yellow
     );
     saveData(r, data);
     callback();
