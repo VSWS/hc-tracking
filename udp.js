@@ -8,11 +8,11 @@
 
 var dgram = require("dgram");
 var colors = require('colors');
-var Dequeue = require('dequeue')
+var FIFO = require('dequeue');
 var async = require('async');
 var redis = require("redis");
 var rClient = redis.createClient();
-var FIFO = new Dequeue();
+
 //var ports = [4000, 4001, 4002, 3333, 4003, 4004, 4005, 4006, 4007, 4008, 4009, 4010, 3001, 3002, 3003, 3004, 3005, 3006, 3007, 3008, 3009, 3010, 3011];
 var ports = [4444];
 var r = 0;
