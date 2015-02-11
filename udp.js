@@ -1,4 +1,5 @@
 var d = require ('dequeue');
+var seatStateStore = require("./SeatStateStore");
 var redis = require("redis");
 var rClient = redis.createClient();
 var dgram = require("dgram");
@@ -12,6 +13,7 @@ var udpserver = dgram.createSocket("udp4");
 udpserver.on("message",
     function (msg, rinfo) {
         FIFO.push(msg.toString());
+        //console.log("MSG", msg);
     }
 );
 
@@ -24,8 +26,8 @@ function fetcher () {
     {
         index++;
         var msg = FIFO.shift();
-        console.log("Success: ", index);
         rClient.hset("raw", "data"+index, msg);
+        console.log("Successed", index);
     }
 }
 
