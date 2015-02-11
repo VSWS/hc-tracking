@@ -39,8 +39,17 @@ for(var i=0; i < ports.length; i++){
         //console.log("[2. JSON Data]: ".yellow, JSON.stringify(data));
         //console.log("[3. Decoder:]".blue, typeof data, data.toString('utf8'));
         //console.log("-------------------------------------------------");
-        console.log("Success: ".blue, r++);
-        saveData(r, data);
+
+
+        var q = async.queue(function (data, callback) {
+            console.log("Success: ".blue, r++, " - " + data.data);
+            callback();
+        }, 4);
+
+        q.push({data: data}, function (err) {
+            console.log('finished processing foo');
+        });
+        q.running();
         //
 
         //console.log("Server got: ".yellow + " IP: " +
