@@ -5,7 +5,7 @@
 
 var cluster = require('cluster');
 var numCPUs = require('os').cpus().length;
-
+var colors = require('colors');
 var dgram = require('dgram');
 var message = new Buffer("Some bytes hello world bo bo bo world HEHEHEHE ahhaha hohoho hehe:");
 var client = dgram.createSocket("udp4");
