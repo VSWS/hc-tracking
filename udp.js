@@ -31,7 +31,8 @@ var q = async.queue(function (data, callback) {
 
     saveData(data.index, data.data);
     callback();
-}, 50);
+
+}, 20);
 
 for(var i=0; i < ports.length; i++){
 
@@ -42,10 +43,10 @@ for(var i=0; i < ports.length; i++){
         client.close();
     });
 
-
     client.on("message", function (data, rinfo) {
         r++;
         console.log(("Success:" + r).blue);
+
         q.push({index: r, data: data}, function (err) {
             if(err){
                 console.log("Error queue: ", err);
