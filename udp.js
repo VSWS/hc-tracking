@@ -27,9 +27,7 @@ var q = async.queue(function (data, callback) {
     rClient.hset("raw", "data"+data.index, data.data);
     callback();
 });
-q.drain = function(data) {
-    console.log('all items have been processed', data);
-}
+
 for(var i=0; i < ports.length; i++){
 
     console.log("Start listen port ",i,":", ports[i]);
