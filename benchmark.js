@@ -12,7 +12,7 @@ var client = dgram.createSocket("udp4");
 var async = require('async');
 
 var max = 1000;
-var numCluster = 100;
+var numCluster = 50;
 var maxReq = max * numCluster;
 var arr = [];
 
