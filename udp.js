@@ -7,7 +7,7 @@
 * */
 
 var dgram = require("dgram");
-var colors = require('colors');
+//  var colors = require('colors');
 var async = require('async');
 var redis = require("redis");
 var rClient = redis.createClient();
@@ -45,7 +45,7 @@ for(var i=0; i < ports.length; i++){
 
     client.on("message", function (data, rinfo) {
         r++;
-        console.log(("Success:" + r).blue);
+        console.log("Success:" + r);
 
         q.push({index: r, data: data}, function (err) {
             if(err){
