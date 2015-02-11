@@ -25,7 +25,7 @@ function fetcher () {
         rClient.hset("raw", "data"+index, msg);
         console.log("Success: ", index);
     }
-    setImmediate(fetcher); //make this function continuously run
+    //setImmediate(fetcher); //make this function continuously run
 }
 
 ///
