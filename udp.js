@@ -48,7 +48,7 @@ for(var i=0; i < ports.length; i++){
 
 }
 function fetcher() {
-    console.log("Fetcher Run:", FIFO);
+    console.log("Fetcher Run:", fifo);
     while (fifo.length > 0)
     {
         var msg = fifo.shift();
