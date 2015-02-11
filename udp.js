@@ -23,6 +23,11 @@ rClient.on("error", function (err) {
     console.log("Error " + err);
 });
 
+var q = async.queue(function (data, callback) {
+    console.log("Success: ".blue, r++, " - " + data.data);
+    saveData(r, data);
+    callback();
+}, 4);
 
 for(var i=0; i < ports.length; i++){
 
@@ -39,12 +44,6 @@ for(var i=0; i < ports.length; i++){
         //console.log("[2. JSON Data]: ".yellow, JSON.stringify(data));
         //console.log("[3. Decoder:]".blue, typeof data, data.toString('utf8'));
         //console.log("-------------------------------------------------");
-
-
-        var q = async.queue(function (data, callback) {
-            console.log("Success: ".blue, r++, " - " + data.data);
-            callback();
-        }, 4);
 
         q.push({data: data}, function (err) {
             console.log('finished processing foo');
@@ -66,6 +65,5 @@ for(var i=0; i < ports.length; i++){
 }
 
 function saveData(index, data){
-    console.log("Data", index);
     rClient.hset("raw", "data"+index, data, redis.print);
 }
