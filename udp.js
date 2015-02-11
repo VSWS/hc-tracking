@@ -10,20 +10,21 @@ var udpserver = dgram.createSocket("udp4");
 
 udpserver.on("message",
     function (msg, rinfo) {
-        console.log(FIFO);
         FIFO.push(msg);
     }
 );
 
 udpserver.bind(4444);
-
+var index;
 function fetcher () {
     while (FIFO.length > 0) {
+        index++;
         var msg = FIFO.shift();
         console.log(msg);
-        seatStateStore.parseMessage(msg);
+        rClient.hset("raw", "data"+index, msg);
+        //seatStateStore.parseMessage(msg);
         process.nextTick(fetcher);
     }
 }
 
-///rClient.hset("raw", "data"+data.index, data.data);
+///
