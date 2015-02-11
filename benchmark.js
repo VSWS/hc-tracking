@@ -29,7 +29,7 @@ if (cluster.isMaster) {
     var numReqs = 0;
     var totalReqs = 0;
     setInterval(function() {
-        console.log("Total request =", totalReqs, "NumReq=", numReqs);
+        console.log(("Number Request: ", numReqs).red, " | ", ("Total Request: ", totalReqs).yellow);
         numReqs = 0;
     }, 1000);
 
