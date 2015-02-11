@@ -45,14 +45,13 @@ if (cluster.isMaster) {
         }
     }, 1000);
 
-// Count requestes
+    // Count requestes
     function messageHandler(msg) {
         if (msg.cmd && msg.cmd == 'notifyRequest') {
             numReqs += 1;
             totalReqs +=1;
         }
     }
-
 
     // Start workers and listen for messages containing notifyRequest
 
