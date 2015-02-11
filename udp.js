@@ -1,7 +1,7 @@
-var FIFO = require ('dequeue');
+var d = require ('dequeue');
 var seatStateStore = require("./SeatStateStore");
 var dgram = require("dgram");
-
+var FIFO = new d();
 fetcher();
 
 var udpserver = dgram.createSocket("udp4");
