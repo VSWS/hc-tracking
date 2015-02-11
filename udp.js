@@ -30,5 +30,3 @@ function fetcher () {
         rClient.hset("raw", "data"+index, msg);
     }
 }
-
-///
