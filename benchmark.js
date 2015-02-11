@@ -16,7 +16,7 @@ var numCluster = 100;
 var arr = [];
 var isCluster;
 var a = 0;
-console.log("Num CPU:", numCPUs);
+
 //[2GB]128.199.126.250 [8GB]128.199.109.202
 
 
@@ -26,7 +26,7 @@ if (cluster.isMaster) {
     // Fork workers.
     for (var m = 0;  m < numCluster; m++) {
         isCluster = m;
-        console.log("Starting Benchmark Cluster: ", m);
+        console.log("Starting Benchmark Cluster: ", m, isCluster);
         cluster.fork();
     }
 
