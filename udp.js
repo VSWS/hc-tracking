@@ -34,9 +34,9 @@ var q = async.queue(function (data, callback) {
         (" Record: "+ r).blue,
         (" Data: " + data.data).red,
         (' Process: ' + q.length()).yellow,
-        (' Running: ' +q.running()).cyan
+        (' Not Running: ' + q.idle()).cyan
     );
-    saveData(r, data);
+    saveData(r, data.data);
     callback();
 }, 50);
 
