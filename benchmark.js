@@ -47,11 +47,9 @@ if (cluster.isMaster) {
     cluster.on('exit', function(worker, code, signal) {
         console.log('worker ' + worker.process.pid + ' died');
     });
-} else if (cluster.isWorker) {
-    console.log('I am worker #' + cluster.worker.id);
-    q.push(arr);
 } else {
-console.log("Else worker")
+    console.log("Else worker", cluster.worker.id);
+    q.push(arr);
     // Workers can share any TCP connection
     // In this case its a HTTP server
 
