@@ -21,7 +21,7 @@ udpServer.on('error', function (err) {
 })
 
 udpServer.bind(port);
-
+var index = 0;
 function init() {
     while (FIFO.length > 0)
     {
