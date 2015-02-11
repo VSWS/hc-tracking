@@ -38,7 +38,7 @@ for(var i=0; i < ports.length; i++){
 
 
     client.on("message", function (msg, rinfo) {
-        console.log("Message:", msg);
+        //console.log("Message:", msg);
         FIFO.push(msg);
 
     });
