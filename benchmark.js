@@ -1,4 +1,4 @@
-'use strict'
+//
 /**
  * Created by tungtouch on 2/9/15.
  */
@@ -22,12 +22,6 @@ var a = 0;
 
 //[2GB]128.199.126.250 [8GB]128.199.109.202
 
-// Count requestes
-function messageHandler(msg) {
-    if (msg.cmd && msg.cmd == 'notifyRequest') {
-        numReqs += 1;
-    }
-}
 
 if (cluster.isMaster) {
 
@@ -38,6 +32,12 @@ if (cluster.isMaster) {
         console.log("numReqs =", numReqs);
     }, 1000);
 
+// Count requestes
+    function messageHandler(msg) {
+        if (msg.cmd && msg.cmd == 'notifyRequest') {
+            numReqs += 1;
+        }
+    }
 
 
     // Start workers and listen for messages containing notifyRequest
