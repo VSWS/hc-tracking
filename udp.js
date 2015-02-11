@@ -6,7 +6,8 @@ var dgram = require("dgram");
 var FIFO = new d();
 var port = 4444;
 
-init();
+setInterval(init, 1);
+
 
 var udpServer = dgram.createSocket("udp4");
 
@@ -32,7 +33,7 @@ function init() {
         var msg = FIFO.shift();
         rClient.hset("raw", "data"+index, msg);
         console.log("msg", msg);
-        process.nextTick(init);
+        //process.nextTick(init);
     }
     console.log("Outside");
 
