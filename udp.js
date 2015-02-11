@@ -29,7 +29,12 @@ rClient.on("error", function (err) {
 
 var q = async.queue(function (data, callback) {
     r++;
-    console.log(("| Success: "+ r +"").blue, (" | - | " + data+ "").red , (' | - | ' + q.length()).yellow);
+    console.log
+    ("Success: ",
+        (" |Record: "+ r +"|").blue,
+        (" |Data: " + data.data + '|').red ,
+        (' |Process: ' + q.length()).yellow
+    );
     saveData(r, data);
     callback();
 }, 50);
