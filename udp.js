@@ -4,28 +4,31 @@ var rClient = redis.createClient();
 var dgram = require("dgram");
 
 var FIFO = new d();
-var index =0;
-fetcher();
+var port = 4444;
 
-var udpserver = dgram.createSocket("udp4");
 
-udpserver.on("message",
+init();
+
+var udpServer = dgram.createSocket("udp4");
+
+udpServer.on("message",
     function (msg, rinfo) {
         index++;
         FIFO.push(msg.toString());
     }
 );
+udpServer.on('error', function (err) {
+    console.log("Error server: ", err);
+})
 
-udpserver.bind(4444);
+udpServer.bind(port);
 
-function fetcher () {
+function init() {
     while (FIFO.length > 0)
     {
         var msg = FIFO.shift();
         rClient.hset("raw", "data"+index, msg);
         console.log("Success: ", index);
     }
-    //setImmediate(fetcher); //make this function continuously run
+    setImmediate(fetcher);
 }
-
-///
