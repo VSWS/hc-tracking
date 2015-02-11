@@ -31,6 +31,7 @@ if (cluster.isMaster) {
     setInterval(function() {
         console.log(("Number Request: ", numReqs).red, " | ", ("Total Request: ", totalReqs).yellow);
         numReqs = 0;
+
     }, 1000);
 
 // Count requestes
