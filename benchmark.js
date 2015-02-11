@@ -16,7 +16,13 @@ var numCluster = 100;
 var arr = [];
 
 for (var i = 0; i < max; i++) {
-    arr.push(i);
+    client.send(message, 0, message.length, 4444, "128.199.126.250", function (err) {
+        console.log("Request : ", a++);
+        if(err){
+            console.log('ERROR :', err);
+        }
+        cb(err);
+    });
 }
 var a = 0;
 
@@ -25,17 +31,12 @@ var a = 0;
 var q = async.queue(function(index, cb){
     console.log("Index: ", index);
     setTimeout(function () {
-        client.send(message, 0, message.length, 4444, "128.199.126.250", function (err) {
-            console.log("Request : ", a++);
-            if(err){
-                console.log('ERROR :', err);
-            }
-            cb(err);
-        });
+
     }, 1);
 });
 
 
+/*
 
 if (cluster.isMaster) {
     // Fork workers.
@@ -48,11 +49,13 @@ if (cluster.isMaster) {
         console.log('worker ' + worker.process.pid + ' died');
     });
 } else {
-    console.log("Else worker", cluster.worker.id);
+    var clusterId = cluster.worker.id;
+    console.log("Cluster Id", clusterId);
     q.push(arr);
     // Workers can share any TCP connection
     // In this case its a HTTP server
 
 }
+*/
 
 
