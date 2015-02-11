@@ -21,14 +21,13 @@ udpServer.on('error', function (err) {
 })
 
 udpServer.bind(port);
-var index = 0;
+console.log("Running server: ", port);
 function init() {
     while (FIFO.length > 0)
     {
-        //index++;
         var msg = FIFO.shift();
         rClient.hset("raw", "data", msg);
-        //console.log("Success: ", index);
+
     }
     setImmediate(init);
 };
