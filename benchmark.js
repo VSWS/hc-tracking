@@ -55,7 +55,7 @@ if (cluster.isMaster) {
         console.log("Index: ", index);
         setTimeout(function () {
             client.send(message, 0, message.length, 4444, "128.199.126.250", function (err) {
-                console.log("Request : ", a++);
+                //console.log("Request : ", a++);
                 process.send({ cmd: 'notifyRequest' });
                 if(err){
                     console.log('ERROR :', err);
