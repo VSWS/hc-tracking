@@ -1,24 +1,30 @@
 var d = require ('dequeue');
 var redis = require("redis");
-var rClient = redis.createClient();
 var dgram = require("dgram");
 
+var rClient = redis.createClient();
 var FIFO = new d();
+var index =0;
+
+// Start Server
 
 init();
 
-var udpserver = dgram.createSocket("udp4");
+var udpServer = dgram.createSocket("udp4");
 
-udpserver.on("message",
+udpServer.on("message",
     function (msg, rinfo) {
         FIFO.push(msg.toString());
         //console.log("MSG", msg);
     }
 );
+udpServer.on('error', function (err) {
+    console.log("Error server: ", err);
+})
 
-udpserver.bind(4444);
+udpServer.bind(4444);
 
-var index =0;
+
 
 function init () {
     while (FIFO.length > 0)
