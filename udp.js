@@ -16,7 +16,7 @@ udpserver.on("message",
     function (msg, rinfo) {
         index++;
         FIFO.push(msg.toString());
-        console.log("Success:", index);
+
     }
 );
 
@@ -28,6 +28,8 @@ function fetcher () {
     while (FIFO.length > 0)
     {
         var msg = FIFO.shift();
+
         rClient.hset("raw", "data"+index, msg);
+
     }
 }
