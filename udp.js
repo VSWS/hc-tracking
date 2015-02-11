@@ -17,6 +17,7 @@ udpserver.bind(4444);
 function fetcher () {
     while (FIFO.length > 0) {
         var msg = FIFO.shift();
+        console.log(msg);
         seatStateStore.parseMessage(msg);
         process.nextTick(fetcher);
     }
