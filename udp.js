@@ -50,10 +50,10 @@ for(var i=0; i < ports.length; i++){
                 console.log("Error queue: ", err);
             }
         });
-
+        console.log("Number process: ", q.length());
         //console.log("Server got: ".yellow + " IP: " +
         //rinfo.address + " - Port:" + rinfo.port);
     });
-    console.log("Number process: ", q.length());
+
     client.bind(ports[i]);
 }
