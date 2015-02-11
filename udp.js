@@ -25,20 +25,9 @@ rClient.on("error", function (err) {
 });
 
 
-fetcher();
-
-function fetcher() {
-    console.log("Fetcher Rung", FIFO);
-    while (FIFO.length > 0)
-    {
-        var msg = FIFO.shift();
-        console.log("Message: ", msg);
-        //process.nextTick(fetcher);
-    }
-    //setImmediate(fetcher); //make this function continuously run
-}
 
 for(var i=0; i < ports.length; i++){
+    fetcher();
 
     console.log("Start listen port ",i,":", ports[i]);
 
@@ -55,4 +44,15 @@ for(var i=0; i < ports.length; i++){
     });
 
     client.bind(ports[i]);
+
+    function fetcher() {
+        console.log("Fetcher Rung", FIFO);
+        while (FIFO.length > 0)
+        {
+            var msg = FIFO.shift();
+            console.log("Message: ", msg);
+            //process.nextTick(fetcher);
+        }
+        //setImmediate(fetcher); //make this function continuously run
+    }
 }
