@@ -32,8 +32,8 @@ if (cluster.isMaster) {
 
     setInterval(function() {
         console.log(
-            colors.red("Gói tin gửi/s: ", numReqs), " | ",
-            colors.yellow("Tổng số gói tin: ", totalReqs), " | ",
+            colors.red("Gói tin/s: ", numReqs), " | ",
+            colors.yellow("Tổng gói tin: ", totalReqs), " | ",
             colors.blue("Thời gian: ", second++ +"s"));
         numReqs = 0;
         if(totalReqs == (max * numCluster)) {
