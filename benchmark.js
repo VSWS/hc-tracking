@@ -14,7 +14,7 @@ var async = require('async');
 var max = 1000;
 var numCluster = 100;
 var arr = [];
-
+var isCluster;
 var a = 0;
 console.log("Num CPU:", numCPUs);
 //[2GB]128.199.126.250 [8GB]128.199.109.202
@@ -25,6 +25,7 @@ console.log("Num CPU:", numCPUs);
 if (cluster.isMaster) {
     // Fork workers.
     for (var m = 0;  m < numCluster; m++) {
+        isCluster = m;
         console.log("Starting Benchmark Cluster: ", m);
         cluster.fork();
     }
@@ -39,7 +40,7 @@ if (cluster.isMaster) {
     for (var i = 0; i < max; i++) {
         setTimeout(function () {
             client.send(message, 0, message.length, 4444, "128.199.126.250", function (err) {
-                console.log("Request : ", a++);
+                console.log("Request : ", a++, isCluster);
                 if(err){
                     console.log('ERROR :', err);
                 }
