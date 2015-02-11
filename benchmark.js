@@ -37,6 +37,7 @@ if (cluster.isMaster) {
             colors.blue("Seconds: ", second++));
         numReqs = 0;
         if(totalReqs == 100000) {
+            console.log(colors.cyan("\n-------------------------------"))
             console.log(colors.cyan("Result benchmark: ", colors.bold(totalReqs / second)));
             process.exit(1);
         }
