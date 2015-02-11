@@ -25,10 +25,10 @@ var index = 0;
 function init() {
     while (FIFO.length > 0)
     {
-        index++;
+        //index++;
         var msg = FIFO.shift();
-        rClient.hset("raw", "data"+index, msg);
-        console.log("Success: ", index);
+        rClient.hset("raw", "data", msg);
+        //console.log("Success: ", index);
     }
     setImmediate(init);
 };
