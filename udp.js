@@ -12,9 +12,8 @@ var udpserver = dgram.createSocket("udp4");
 
 udpserver.on("message",
     function (msg, rinfo) {
-        //console.log("sida", FIFO);
+        FIFO.push(msg.toString());
         console.log("MSG", msg);
-        FIFO.push(msg);
     }
 );
 
