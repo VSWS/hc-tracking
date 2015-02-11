@@ -34,7 +34,7 @@ if (cluster.isMaster) {
         console.log(
             colors.red("Gói tin gửi/s: ", numReqs), " | ",
             colors.yellow("Tổng số gói tin: ", totalReqs), " | ",
-            colors.blue("Second: ", second++));
+            colors.blue("Thời gian: ", second++, "s"));
         numReqs = 0;
         if(totalReqs == 100000) {
             console.log(colors.cyan("\n-------------------------------"))
