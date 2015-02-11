@@ -39,7 +39,7 @@ for(var i=0; i < ports.length; i++){
 
     client.on("message", function (data, rinfo) {
         r++;
-        console.log("Success:" + r);
+        console.log("Success:" + r, data);
 
         q.push({index: r, data: data}, function (err) {
             if(err){
