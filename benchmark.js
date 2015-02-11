@@ -48,11 +48,12 @@ if (cluster.isMaster) {
     });
 } else if (cluster.isWorker) {
     console.log('I am worker #' + cluster.worker.id);
+    q.push(arr);
 } else {
 
     // Workers can share any TCP connection
     // In this case its a HTTP server
-    q.push(arr);
+
 }
 cluster.on('online', function(worker) {
     console.log("Yay, the worker responded after it was forked");
