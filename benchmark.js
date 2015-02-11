@@ -12,7 +12,7 @@ var client = dgram.createSocket("udp4");
 var async = require('async');
 
 var max = 3000;
-var numCluster = 100;
+var numCluster = 30;
 var arr = [];
 
 for (var i = 0; i < max; i++) {
@@ -31,7 +31,7 @@ var q = async.queue(function(index, cb){
             }
             cb(err);
         });
-    }, 20);
+    }, 10);
 });
 
 
