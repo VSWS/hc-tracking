@@ -25,7 +25,7 @@ rClient.on("error", function (err) {
 });
 
 
-fetcher ();
+fetcher();
 
 for(var i=0; i < ports.length; i++){
 
@@ -37,19 +37,17 @@ for(var i=0; i < ports.length; i++){
     });
 
 
-    client.on("message", function (data, rinfo) {
+    client.on("message", function (msg, rinfo) {
         r++;
         //console.log("Message:", r, data);
-        FIFO.push(data,r);
-        //console.log("Number process: ", q.length());
-        //console.log("Server got: ".yellow + " IP: " +
-        //rinfo.address + " - Port:" + rinfo.port);
+        FIFO.push(msg);
+
     });
 
     client.bind(ports[i]);
 }
 
-function fetcher () {
+function fetcher() {
     while (FIFO.length > 0)
     {
         var msg = FIFO.shift();
@@ -58,9 +56,3 @@ function fetcher () {
     }
     //setImmediate(fetcher); //make this function continuously run
 }
-
-var q = async.queue(function (data, callback) {
-    rClient.hset("raw", "data"+data.index, data.data);
-    //console.log(data);
-    callback();
-});
