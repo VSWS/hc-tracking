@@ -38,7 +38,8 @@ if (cluster.isMaster) {
         numReqs = 0;
         if(totalReqs == 100000) {
             console.log(colors.cyan("\n-------------------------------"))
-            console.log(colors.cyan("Result benchmark: ", colors.bold(totalReqs / second)));
+            console.log(colors.cyan("Result benchmark: ", colors.bold(totalReqs / second)), " Device tracking/s ! \n");
+
             process.exit(1);
         }
     }, 1000);
