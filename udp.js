@@ -19,7 +19,7 @@ var r = 0;
 var client = dgram.createSocket('udp4');
 
 function saveData(index, data){
-    rClient.hset("raw", "data"+index, data, redis.print);
+    rClient.hset("raw", "data"+index, data);
 }
 
 
