@@ -33,8 +33,7 @@ var q = async.queue(function (data, callback) {
     ("Success:",
         (" Record: "+ r).blue,
         (" Data: " + data.data).red,
-        (' Process: ' + q.length()).yellow,
-        (' Not Running: ' + q.idle()).cyan
+        (' Process: ' + q.length()).yellow
     );
     saveData(r, data.data);
     callback();
@@ -57,6 +56,7 @@ for(var i=0; i < ports.length; i++){
                 console.log("Error queue: ", err);
             }
         });
+        console.log((' Not Running: ' + q.idle()).cyan);
         //console.log("Number process: ", q.length());
         //console.log("Server got: ".yellow + " IP: " +
         //rinfo.address + " - Port:" + rinfo.port);
