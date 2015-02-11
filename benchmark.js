@@ -11,51 +11,59 @@ var message = new Buffer("Some bytes hello world bo bo bo world HEHEHEHE ahhaha 
 var client = dgram.createSocket("udp4");
 var async = require('async');
 
-var max = 1000;
+var max = 100;
 var numCluster = 100;
 var arr = [];
 
 for (var i = 0; i < max; i++) {
-    client.send(message, 0, message.length, 4444, "128.199.126.250", function (err) {
-        console.log("Request : ", a++);
-        if(err){
-            console.log('ERROR :', err);
-        }
-        //cb(err);
-    });
+    arr.push(i);
 }
 var a = 0;
 
 //[2GB]128.199.126.250 [8GB]128.199.109.202
 
-var q = async.queue(function(index, cb){
-    console.log("Index: ", index);
-    setTimeout(function () {
 
-    }, 1);
-});
-
-
-/*
 
 if (cluster.isMaster) {
-    // Fork workers.
-    for (var m = 0; m < numCPUs; m++) {
-        console.log("Starting Benchmark!", m);
+
+    // Keep track of http requests
+    var numReqs = 0;
+    setInterval(function() {
+        console.log("numReqs =", numReqs);
+    }, 1000);
+
+    // Count requestes
+    function messageHandler(msg) {
+        if (msg.cmd && msg.cmd == 'notifyRequest') {
+            numReqs += 1;
+        }
+    }
+
+    // Start workers and listen for messages containing notifyRequest
+
+    for (var i = 0; i < numCPUs; i++) {
         cluster.fork();
     }
 
-    cluster.on('exit', function(worker, code, signal) {
-        console.log('worker ' + worker.process.pid + ' died');
+    Object.keys(cluster.workers).forEach(function(id) {
+        cluster.workers[id].on('message', messageHandler);
     });
+
 } else {
-    var clusterId = cluster.worker.id;
-    console.log("Cluster Id", clusterId);
+    var q = async.queue(function(index, cb){
+        console.log("Index: ", index);
+        setTimeout(function () {
+            client.send(message, 0, message.length, 4444, "128.199.126.250", function (err) {
+                console.log("Request : ", a++);
+                process.send({ cmd: 'notifyRequest' });
+                if(err){
+                    console.log('ERROR :', err);
+                }
+                cb(err);
+            });
+        }, 10);
+    });
+
     q.push(arr);
-    // Workers can share any TCP connection
-    // In this case its a HTTP server
 
 }
-*/
-
-
