@@ -33,7 +33,7 @@ function fetcher() {
     {
         var msg = FIFO.shift();
         console.log("Message: ", msg);
-        process.nextTick(fetcher);
+        //process.nextTick(fetcher);
     }
     //setImmediate(fetcher); //make this function continuously run
 }
@@ -49,8 +49,7 @@ for(var i=0; i < ports.length; i++){
 
 
     client.on("message", function (msg, rinfo) {
-
-        //console.log("Message:", r, data);
+        console.log("Message:", msg);
         FIFO.push(msg);
 
     });
