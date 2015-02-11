@@ -24,7 +24,7 @@ var a = 0;
 
 var q = async.queue(function(index, cb){
     setTimeout(function () {
-        client.send(message, 0, message.length, 4444, "128.199.109.202", function (err) {
+        client.send(message, 0, message.length, 4444, "128.199.126.250", function (err) {
             console.log("Request : ", a++);
             if(err){
                 console.log('ERROR :', err);
