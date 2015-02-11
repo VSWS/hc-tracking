@@ -36,10 +36,7 @@ for(var i=0; i < ports.length; i++){
         console.log("Server error:\n".red + err.stack);
         client.close();
     });
-    client.on('data', function (id) {
-        var worker = cluster.workers[id];
-        console.log("Worker:", worker);
-    });
+   
 
     client.on("message", function (data, rinfo) {
         r++;

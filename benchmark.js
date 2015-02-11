@@ -48,6 +48,7 @@ if (cluster.isMaster) {
     });
 } else {
     console.log('I am worker #' + cluster.worker.id);
+
     // Workers can share any TCP connection
     // In this case its a HTTP server
     q.push(arr);
