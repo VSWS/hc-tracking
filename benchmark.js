@@ -39,7 +39,7 @@ if (cluster.isMaster) {
                 colors.yellow("Total Request: ", totalReqs), " | ",
                 colors.blue("Seconds: ", second++));
             numReqs = 0;
-            if(totalReqs == max * numCluster) {
+            if(totalReqs == (max * numCluster)) {
                 flag = 1;
             }
         }, 1000);
