@@ -47,11 +47,13 @@ for(var i=0; i < ports.length; i++){
         r++;
         console.log("Success:" + r);
 
-        q.push({index: r, data: data}, function (err) {
+       /* q.push({index: r, data: data}, function (err) {
             if(err){
                 console.log("Error queue: ", err);
             }
-        });
+        });*/
+
+
         //console.log("Number process: ", q.length());
         //console.log("Server got: ".yellow + " IP: " +
         //rinfo.address + " - Port:" + rinfo.port);
