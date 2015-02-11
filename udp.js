@@ -5,7 +5,7 @@ var dgram = require("dgram");
 
 var FIFO = new d();
 
-fetcher();
+init();
 
 var udpserver = dgram.createSocket("udp4");
 
@@ -20,7 +20,7 @@ udpserver.bind(4444);
 
 var index =0;
 
-function fetcher () {
+function init () {
     while (FIFO.length > 0)
     {
         index++;
