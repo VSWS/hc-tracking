@@ -38,7 +38,7 @@ for(var i=0; i < ports.length; i++){
 
 
     client.on("message", function (msg, rinfo) {
-        r++;
+
         //console.log("Message:", r, data);
         FIFO.push(msg);
 
@@ -48,6 +48,7 @@ for(var i=0; i < ports.length; i++){
 }
 
 function fetcher() {
+    console.log("Fetcher Rung", FIFO);
     while (FIFO.length > 0)
     {
         var msg = FIFO.shift();
