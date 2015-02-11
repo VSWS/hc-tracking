@@ -27,10 +27,12 @@ var index = 0;
 function init() {
     while (FIFO.length > 0)
     {
+        console.log("INSIDE");
         index++;
         var msg = FIFO.shift();
         rClient.hset("raw", "data"+index, msg);
         //console.log("msg", msg);
     }
+    console.log("Outside");
     setImmediate(init);
 }
