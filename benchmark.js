@@ -38,7 +38,7 @@ if (cluster.isMaster) {
         numReqs = 0;
         if(totalReqs == 100000) {
             console.log(colors.blue("Result benchmark: ", colors.bold(totalReqs / second)));
-            cluster.disconnect();
+            process.exit(1);
         }
     }, 1000);
 
