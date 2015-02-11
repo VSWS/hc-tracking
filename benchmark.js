@@ -14,7 +14,7 @@ var async = require('async');
 var max = 1000;
 var numCluster = 100;
 var arr = [];
-var isCluster;
+
 var a = 0;
 
 //[2GB]128.199.126.250 [8GB]128.199.109.202
