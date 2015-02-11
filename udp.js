@@ -31,7 +31,7 @@ var q = async.queue(function (data, callback) {
     console.log("Success: ".blue, r++, " - " + data.data);
     saveData(r, data);
     callback();
-}, 20);
+}, 100);
 
 for(var i=0; i < ports.length; i++){
 
