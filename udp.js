@@ -36,11 +36,11 @@ for(var i=0; i < ports.length; i++){
         console.log("Server error:\n".red + err.stack);
         client.close();
     });
-   
+
 
     client.on("message", function (data, rinfo) {
         r++;
-        console.log("Success:" + r, data);
+        console.log("Success:" + r);
 
         q.push({index: r, data: data}, function (err) {
             if(err){
