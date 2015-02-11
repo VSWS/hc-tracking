@@ -22,8 +22,8 @@ var a = 0;
 
 //[2GB]128.199.126.250 [8GB]128.199.109.202
 
-var q = async.queue(function(index, cluster, cb){
-    console.log("Index: ", index, cluster);
+var q = async.queue(function(index, cb){
+    console.log("Index: ", index);
     setTimeout(function () {
         client.send(message, 0, message.length, 4444, "128.199.126.250", function (err) {
             console.log("Request : ", a++);
@@ -49,14 +49,12 @@ if (cluster.isMaster) {
     });
 } else if (cluster.isWorker) {
     console.log('I am worker #' + cluster.worker.id);
-    q.push(arr,cluster.worker.id);
+    q.push(arr);
 } else {
-
+console.log("Else worker")
     // Workers can share any TCP connection
     // In this case its a HTTP server
 
 }
-cluster.on('online', function(worker) {
-    console.log("Yay, the worker responded after it was forked");
-});
+
 
