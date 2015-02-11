@@ -1,5 +1,4 @@
 var d = require ('dequeue');
-var seatStateStore = require("./SeatStateStore");
 var redis = require("redis");
 var rClient = redis.createClient();
 var dgram = require("dgram");
