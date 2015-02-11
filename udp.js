@@ -1,39 +1,32 @@
 var d = require ('dequeue');
+var seatStateStore = require("./SeatStateStore");
 var redis = require("redis");
+var rClient = redis.createClient();
 var dgram = require("dgram");
 
-var rClient = redis.createClient();
 var FIFO = new d();
-var index =0;
 
-// Start Server
+fetcher();
 
-init();
+var udpserver = dgram.createSocket("udp4");
 
-var udpServer = dgram.createSocket("udp4");
-
-udpServer.on("message",
+udpserver.on("message",
     function (msg, rinfo) {
         FIFO.push(msg.toString());
         //console.log("MSG", msg);
     }
 );
-udpServer.on('error', function (err) {
-    console.log("Error server: ", err);
-})
 
-udpServer.bind(4444);
-
-
-
-function init () {
+udpserver.bind(4444);
+var index =0;
+function fetcher () {
     while (FIFO.length > 0)
     {
         index++;
         var msg = FIFO.shift();
         rClient.hset("raw", "data"+index, msg);
-        console.log("Successed", index);
     }
+    setImmediate(fetcher); //make this function continuously run
 }
 
 ///
