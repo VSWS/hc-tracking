@@ -18,10 +18,6 @@ var r = 0;
 
 var client = dgram.createSocket('udp4');
 
-function saveData(index, data){
-
-}
-
 
 rClient.on("error", function (err) {
     console.log("Error " + err);
@@ -46,11 +42,11 @@ for(var i=0; i < ports.length; i++){
         r++;
         console.log("Success:" + r);
 
-       /* q.push({index: r, data: data}, function (err) {
+        q.push({index: r, data: data}, function (err) {
             if(err){
                 console.log("Error queue: ", err);
             }
-        });*/
+        });
 
 
         //console.log("Number process: ", q.length());
