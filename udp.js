@@ -18,14 +18,13 @@ udpserver.on("message",
 );
 
 udpserver.bind(4444);
-
+var index =0;
 function fetcher () {
     while (FIFO.length > 0)
     {
+        index++;
         var msg = FIFO.shift();
-        //seatStateStore.parseMessage(msg);
-        console.log("mg:", msg);
-        console.log("vc", FIFO);
+        rClient.hset("raw", "data"+index, msg);
     }
     setImmediate(fetcher); //make this function continuously run
 }
