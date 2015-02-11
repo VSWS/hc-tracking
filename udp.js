@@ -18,12 +18,12 @@ udpserver.on("message",
 );
 
 udpserver.bind(4444);
-var index;
+
 function fetcher () {
     while (FIFO.length > 0) {
-        index++;
+
         var msg = FIFO.shift();
-        console.log(msg);
+        console.log("Goi tin: ", msg);
         //rClient.hset("raw", "data"+index, msg);
         seatStateStore.parseMessage(msg);
         process.nextTick(fetcher);
