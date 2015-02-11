@@ -24,7 +24,7 @@ rClient.on("error", function (err) {
 });
 
 var q = async.queue(function (data, callback) {
-    rClient.hset("raw", "data"+data.index, data.data);
+    //rClient.hset("raw", "data"+data.index, data.data);
     callback();
 });
 
