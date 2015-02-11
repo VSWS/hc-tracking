@@ -28,7 +28,7 @@ function init() {
     {
         var msg = FIFO.shift();
         rClient.hset("raw", "data", msg);
-        console.log("msg", msg);
+        //console.log("msg", msg);
     }
     setImmediate(init);
 }
