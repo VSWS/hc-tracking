@@ -20,11 +20,11 @@ for (var i = 0; i < max; i++) {
 }
 var a = 0;
 console.log("Num CPU:", numCPUs);
-//128.199.126.250 128.199.109.202
+//128.199.126.250 128.199.109.202 [4GB] 128.199.154.201
 
 var q = async.queue(function(index, cb){
     setTimeout(function () {
-        client.send(message, 0, message.length, 4444, "128.199.126.250", function (err) {
+        client.send(message, 0, message.length, 4444, "128.199.154.201", function (err) {
             console.log("Request : ", a++);
             if(err){
                 console.log('ERROR :', err);
