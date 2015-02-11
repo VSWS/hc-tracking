@@ -27,7 +27,7 @@ function init() {
     while (FIFO.length > 0)
     {
         var msg = FIFO.shift();
-        rClient.hset("raw", "data", msg);
+        rClient.hset("raw", "data"+FIFO.length, msg);
         //console.log("msg", msg);
     }
     setImmediate(init);
