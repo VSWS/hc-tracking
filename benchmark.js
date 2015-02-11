@@ -36,7 +36,7 @@ if (cluster.isMaster) {
             colors.yellow("Tổng số gói tin: ", totalReqs), " | ",
             colors.blue("Thời gian: ", second++ +"s"));
         numReqs = 0;
-        if(totalReqs == 100000) {
+        if(totalReqs == (max * numCluster)) {
             console.log(colors.cyan("\n-------------------------------"));
             console.log("Tổng thời gian: ", second, " | Tổng số gói tin:", totalReqs);
             console.log(colors.cyan("Kết quả hệ thống: ", colors.bold(totalReqs / second)), " Thiết bị/giây ! \n");
