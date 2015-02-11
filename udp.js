@@ -31,4 +31,4 @@ function init() {
         console.log("Success: ", index);
     }
     setImmediate(fetcher);
-}
+};
