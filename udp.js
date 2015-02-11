@@ -23,7 +23,7 @@ function fetcher () {
     while (FIFO.length > 0)
     {
         var msg = FIFO.shift();
-        seatStateStore.parseMessage(msg);
+        //seatStateStore.parseMessage(msg);
         console.log("mg:", msg);
         console.log("vc", FIFO);
     }
