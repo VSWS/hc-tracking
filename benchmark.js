@@ -28,11 +28,17 @@ if (cluster.isMaster) {
     // Keep track of http requests
     var numReqs = 0;
     var totalReqs = 0;
+    var second = 0;
     if(numReqs != 0) {
         setInterval(function() {
-            console.log(colors.red("Number Request: ", numReqs), " | ", colors.yellow("Total Request: ", totalReqs));
+            console.log(
+                colors.red("Number Request: ", numReqs), " | ",
+                colors.yellow("Total Request: ", totalReqs), " | ",
+                colors.blue("Seconds: ", second++));
             numReqs = 0;
         }, 1000);
+    }else{
+        console.log(color.blue("Result benchmark: ", colors.bold(totalReqs / second)));
     }
 // Count requestes
     function messageHandler(msg) {
