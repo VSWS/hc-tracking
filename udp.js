@@ -19,7 +19,7 @@ var r = 0;
 var client = dgram.createSocket('udp4');
 
 function saveData(index, data){
-    rClient.hset("raw", "data"+index, data);
+
 }
 
 
@@ -28,11 +28,10 @@ rClient.on("error", function (err) {
 });
 
 var q = async.queue(function (data, callback) {
-
-    saveData(data.index, data.data);
+    rClient.hset("raw", "data"+data.index, data.data);
     callback();
 
-}, 20);
+});
 
 for(var i=0; i < ports.length; i++){
 
