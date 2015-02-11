@@ -31,14 +31,14 @@ var q = async.queue(function(index, cb){
             }
             cb(err);
         });
-    }, 20);
+    }, 2);
 });
 
 
 
 if (cluster.isMaster) {
     // Fork workers.
-    for (var m = 0; m < numCluster; m++) {
+    for (var m = 0; m < numCPUs; m++) {
         console.log("Starting Benchmark!", m);
         cluster.fork();
     }
