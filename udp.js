@@ -25,9 +25,9 @@ rClient.on("error", function (err) {
 });
 
 
-fetcher();
-for(var i=0; i < ports.length; i++){
 
+for(var i=0; i < ports.length; i++){
+    fetcher();
 
     console.log("Start listen port ",i,":", ports[i]);
 
@@ -45,15 +45,14 @@ for(var i=0; i < ports.length; i++){
 
     client.bind(ports[i]);
 
-
-}
-function fetcher() {
-    console.log("Fetcher Run:", fifo);
-    while (fifo.length > 0)
-    {
-        var msg = fifo.shift();
-        console.log("Message: ", msg);
-        process.nextTick(fetcher);
+    function fetcher() {
+        console.log("Fetcher Run:", fifo);
+        while (fifo.length > 0)
+        {
+            var msg = fifo.shift();
+            console.log("Message: ", msg);
+            process.nextTick(fetcher);
+        }
+        //setImmediate(fetcher); //make this function continuously run
     }
-    //setImmediate(fetcher); //make this function continuously run
 }
