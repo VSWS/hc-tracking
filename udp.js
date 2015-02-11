@@ -33,7 +33,8 @@ var q = async.queue(function (data, callback) {
     ("Success:",
         (" Record: "+ r).blue,
         (" Data: " + data.data).red,
-        (' Process: ' + q.length()).yellow
+        (' Process: ' + q.length()).yellow,
+        (' Running: ' +q.running()).cyan
     );
     saveData(r, data);
     callback();
