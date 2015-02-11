@@ -25,8 +25,8 @@ console.log("Num CPU:", numCPUs);
 if (cluster.isMaster) {
     // Fork workers.
     for (var m = 0;  m < numCluster; m++) {
-        cluster.fork();
         console.log("Starting Benchmark Cluster: ", m);
+        cluster.fork();
     }
 
     cluster.on('exit', function(worker, code, signal) {
