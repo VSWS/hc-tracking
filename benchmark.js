@@ -13,6 +13,7 @@ var async = require('async');
 
 var max = 1000;
 var numCluster = 150;
+var maxReq = max * numCluster;
 var arr = [];
 
 for (var i = 0; i < max; i++) {
@@ -36,7 +37,7 @@ if (cluster.isMaster) {
             colors.yellow("Tổng gói tin: ", totalReqs), " | ",
             colors.blue("Thời gian: ", second++ +"s"));
         numReqs = 0;
-        if(totalReqs == (max * numCluster)) {
+        if(totalReqs == maxReq) {
             console.log(colors.cyan("\n-------------------------------"));
             console.log("Tổng thời gian: ", second-1 + "s", " | Tổng số gói tin:", totalReqs);
             console.log(colors.cyan("Kết quả hệ thống: ", colors.bold(totalReqs / second)), " Thiết bị/giây ! \n");
