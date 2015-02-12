@@ -36,8 +36,8 @@ console.log("Running server: ", port);
 
 function init() {
     while (FIFO.length > 0) {
-        console("Data:", FIFO);
-        var msg = FIFO.shift();
 
+        var msg = FIFO.shift();
+        console("Data:", msg);
     }
 }
