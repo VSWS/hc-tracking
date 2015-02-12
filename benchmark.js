@@ -12,7 +12,7 @@ var client = dgram.createSocket("udp4");
 var async = require('async');
 
 var max = 1000;
-var serverUDP = "localhost"; //128.199.126.250
+var serverUDP = "128.199.126.250"; //128.199.126.250
 var numCluster = 100;
 var maxReq = max * numCluster;
 var arr = [];
@@ -57,7 +57,7 @@ if (cluster.isMaster) {
 
     // Start workers and listen for messages containing notifyRequest
 
-    for (var i = 0; i < numCPUs; i++) {
+    for (var i = 0; i < numCluster; i++) {
         cluster.fork();
     }
 
