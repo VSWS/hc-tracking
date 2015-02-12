@@ -20,7 +20,7 @@ var obj;
 udpServer.on("message",
     function (msg, rinfo) {
         index++;
-        obj = {"msg": msg, "index": index};
+        obj = {"index": index, "msg": msg};
         FIFO.push(obj);
     }
 );
