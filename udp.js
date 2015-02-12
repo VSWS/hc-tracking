@@ -14,15 +14,7 @@ setInterval(init, 1);
 
 // Implement MongoDB
 var conn = 'mongodb://localhost:27017/hc';
-MongoClient.connect(conn, function(err, db) {
-    if(err) {
-        console.log("Error connect DB:", err);
-    }
-    console.log("Connected correctly to server");
-    insertDocuments(db, function () {
-        db.close();
-    });
-});
+
 
 // End mongoDB
 
@@ -51,7 +43,15 @@ function init() {
     while (FIFO.length > 0) {
         index++;
         var msg = FIFO.shift();
-
+        MongoClient.connect(conn, function(err, db) {
+            if(err) {
+                console.log("Error connect DB:", err);
+            }
+            console.log("Connected correctly to server");
+            insertDocuments(db, function () {
+                db.close();
+            });
+        });
         var insertDocuments = function(db, callback) {
             // Get the documents collection
             var collection = db.collection('documents');
