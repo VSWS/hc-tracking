@@ -11,3 +11,4 @@ http.createServer(function(req, res) {
     console.log("Request server:", i++)
     res.end();
 }).listen(7878);
+console.log("Server running: 7878");
