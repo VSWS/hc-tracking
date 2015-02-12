@@ -11,7 +11,7 @@ var message = new Buffer("Some bytes hello world bo bo bo world HEHEHEHE ahhaha 
 var client = dgram.createSocket("udp4");
 var async = require('async');
 
-var max = 10000;
+var max = 5000;
 var serverUDP = "128.199.126.250"; //128.199.126.250
 var port = 4343;
 var numCluster = 100;
