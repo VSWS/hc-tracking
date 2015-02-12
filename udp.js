@@ -25,7 +25,7 @@ proxy.connect(portTCP, hostTCP, function (socket) {
 
 });
 
-proxy.write("Hi server, i'm client !");
+
 
 proxy.on('data', function (data) {
     console.log("Server: ", data.toString());
@@ -76,6 +76,7 @@ var FIFO = new d();         // Non-blocking performance implement UDP server
 function init() {
     while (FIFO.length > 0) {
         var msg = FIFO.shift();
+        proxy.write(msg);
         proxy.write(msg);
         console.log("Data:", msg.index);
     }
