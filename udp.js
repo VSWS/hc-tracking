@@ -16,10 +16,12 @@ setInterval(init, 1);
 // Start server listenning UDP
 var udpServer = dgram.createSocket("udp4");
 var index = 0;
+var obj;
 udpServer.on("message",
     function (msg, rinfo) {
         index++;
-        FIFO.push(msg.toString(), index);
+        obj = {"msg": msg, "index": index};
+        FIFO.push(obj, index);
     }
 );
 
