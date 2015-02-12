@@ -17,7 +17,7 @@ var server = net.createServer(function (socket) {
         console.log('Data client:', data.toString());
     });
 
-    socket.write("I'm Server ! \r\n");
+    socket.write("Yo, I'm Server ! \r\n");
 
     socket.on('error', function (err) {
         console.log("Error server:", err.soString());
