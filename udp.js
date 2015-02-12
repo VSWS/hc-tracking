@@ -55,7 +55,8 @@ var udpServer = dgram.createSocket("udp4");
 var index = 0;
 
 udpServer.on("message", function (msg, rinfo) {
-        FIFO.push(msg);
+        var obj = {data: msg, rinfo: rinfo};
+        FIFO.push(obj);
     }
 );
 
@@ -76,10 +77,10 @@ console.log("Running server: ", portUDP);
 
 function init() {
     while (FIFO.length > 0) {
-        var msg = FIFO.shift();
+        var data = FIFO.shift();
         index++;
-        rClient.hset("raw", "data"+index, msg);
+        rClient.hset("raw", "data"+index, data.msg, "ip", data.msg.andress, "port", data.msg.port);
         //proxy.write(msg.toString());
-        console.log("Hoàn thành: ", msg);
+        console.log("Hoàn thành: ", data);
     }
 }
