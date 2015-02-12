@@ -3,8 +3,7 @@
  * */
 var dgram = require("dgram"),
     net = require('net'),
-    d = require('dequeue'),
-    util = require('util');
+    d = require('dequeue');
 
 
 /*
