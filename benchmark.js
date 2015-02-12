@@ -13,6 +13,7 @@ var async = require('async');
 
 var max = 1000;
 var serverUDP = "128.199.126.250"; //128.199.126.250
+var port = 4343;
 var numCluster = 100;
 var maxReq = max * numCluster;
 var arr = [];
@@ -69,7 +70,7 @@ if (cluster.isMaster) {
     var q = async.queue(function(index, cb){
         //console.log("Index: ", index);
         setTimeout(function () {
-            client.send(message, 0, message.length, 4444, serverUDP, function (err) {
+            client.send(message, 0, message.length, port, serverUDP, function (err) {
                 //console.log("Request : ", a++);
                 process.send({ cmd: 'notifyRequest' });
                 if(err){
