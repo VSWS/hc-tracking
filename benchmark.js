@@ -14,7 +14,7 @@ var async = require('async');
 var max = 1000;
 var serverUDP = "128.199.126.250"; //128.199.126.250
 var port = 4343;
-var numCluster = 150;
+var numCluster = 100;
 var maxReq = max * numCluster;
 var arr = [];
 
@@ -78,7 +78,7 @@ if (cluster.isMaster) {
                 }
                 cb(err);
             });
-        }, 10);
+        }, 1);
     });
 
     q.push(arr);
