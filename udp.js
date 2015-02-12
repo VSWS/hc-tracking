@@ -77,6 +77,7 @@ console.log("Running server: ", portUDP);
 function init() {
     while (FIFO.length > 0) {
         var msg = FIFO.shift();
+        index++;
         rClient.hset("raw", "data"+index, msg);
         //proxy.write(msg.toString());
         console.log("Hoàn thành: ", msg);
