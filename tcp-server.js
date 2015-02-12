@@ -20,7 +20,7 @@ var server = net.createServer(function (socket) {
     socket.write("Welcome, i'm Server ! \r\n");
 
     socket.on('error', function (err) {
-        console.log("Error server:", err.soString());
+        console.log("Error server:", err.toString());
     });
 
     socket.on('end', function () {
