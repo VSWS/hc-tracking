@@ -1,7 +1,7 @@
 //var redis = require("redis");
 //var rClient = redis.createClient();
 var dgram = require("dgram");
-var mongoose = require('mongoose');
+var MongoClient = require('mongodb').MongoClient
 var d = require('dequeue');
 var FIFO = new d();
 
@@ -13,21 +13,14 @@ var port = 4343;
 setInterval(init, 1);
 
 // Implement MongoDB
-var db = mongoose.connection;
-mongoose.connect('mongodb://localhost/test');
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function (callback) {
-   console.log("Connect Database Success !");
+var conn = 'mongodb://localhost:27017/hc';
+MongoClient.connect(conn, function(err, db) {
+    assert.equal(null, err);
+    console.log("Connected correctly to server");
+    insertDocuments(db, function () {
+        db.close();
+    });
 });
-
-var Schema = mongoose.Schema;
-
-var rawSchema = new Schema({
-    raw: String,
-    author: String
-});
-
-var rawModel = mongoose.model('Raw', rawSchema);
 
 // End mongoDB
 
@@ -57,20 +50,19 @@ function init() {
         index++;
         var msg = FIFO.shift();
 
-        var rawData = new rawModel({raw: msg, author: 'index:'+index});
-
-        rawData.save(function (err) {
-
-            console.log("Insert succes", index);
-
-            if (err) return handleError(err);
-
-            /*  rawModel.findById(rawData, function (err, doc) {
-             if (err) return handleError(err);
-             console.log("Data insert: ", doc); // {raw: '12321321312312', author: 'tt'}
-             })*/
-        });
-
-        //console.log("msg", msg);
+        var insertDocuments = function(db, callback) {
+            // Get the documents collection
+            var collection = db.collection('documents');
+            // Insert some documents
+            collection.insert([
+                {raw: msg, auth: index}
+            ], function(err, result) {
+                if(err){
+                    console.log("Error insert: ", err);
+                }
+                console.log("insert sucess:", result);
+                callback(result);
+            });
+        };
     }
 }
