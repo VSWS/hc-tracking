@@ -6,7 +6,7 @@ var d = require('dequeue');
 var FIFO = new d();
 
 // Defined variables
-var port = 4444;
+var port = 4343;
 
 
 // Call function init() loop
