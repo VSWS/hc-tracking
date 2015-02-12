@@ -1,22 +1,47 @@
-//var redis = require("redis");
-//var rClient = redis.createClient();
-var dgram = require("dgram");
-
-var d = require('dequeue');
-var FIFO = new d();
-
-// Defined variables
-var port = 4343;
+/*
+* Dependencies Packages
+* */
+var dgram = require("dgram"),
+    net = require('net'),
+    d = require('dequeue');
 
 
-// Call function init() loop
-setInterval(init, 1);
+/*
+ * Set Variables
+ * */
+var portUDP = 4343; // UDP Port
+
+var hostTCP = "128.12.21.12", // TCP IP Server
+    portTCP = 5555; // TCP Port
 
 
-// Start server listenning UDP
+/*
+ * Proxy UDP to TCP
+ * */
+var proxy = new net.Socket();
+
+proxy.connect(portTCP, hostTCP, function (socket) {
+    console.log("Connecting Server TCP:", hostTCP,":",portTCP);
+});
+
+proxy.write("First data !");
+
+proxy.on('error', function (err) {
+    console.log("Error proxy UDP to TCP: ", err);
+});
+
+proxy.on('close', function () {
+    console.log("Proxy UDP to TCP: Closed !");
+});
+
+
+/*
+*  UDP Server
+* */
 var udpServer = dgram.createSocket("udp4");
 var index = 0;
 var obj;
+
 udpServer.on("message",
     function (msg, rinfo) {
         index++;
@@ -29,12 +54,13 @@ udpServer.on('error', function (err) {
     console.log("Error server UDP: ", err);
 });
 
-udpServer.bind(port);
-console.log("Running server: ", port);
-// End listen UDP
+console.log("Running server: ", portUDP);
 
 
-// Function init listen process performance UDP
+/*
+* Function init listen process performance UDP
+* */
+var FIFO = new d();         // Non-blocking performance implement UDP server
 
 function init() {
     while (FIFO.length > 0) {

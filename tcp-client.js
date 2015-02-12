@@ -80,6 +80,7 @@ if (cluster.isMaster) {
     });
     client.connect(5555, host, function (socket) {
         console.log('Connected server!');
+        socket.write("First Data")
     });
 
     client.setEncoding('utf8');
