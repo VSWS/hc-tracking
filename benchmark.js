@@ -59,7 +59,7 @@ if (cluster.isMaster) {
 
     // Start workers and listen for messages containing notifyRequest
 
-    for (var i = 0; i < numCPUs; i++) {
+    for (var i = 0; i < numCluster; i++) {
         cluster.fork();
     }
 
