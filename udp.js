@@ -32,6 +32,8 @@ proxy.on('error', function (err) {
     console.log("Error proxy UDP to TCP: ", err);
 });
 
+proxy.write("Push Notification 1");
+
 proxy.on('end', function (data) {
     console.log("Proxy End: ", data);
 });
@@ -52,7 +54,6 @@ udpServer.on("message", function (msg, rinfo) {
     }
 );
 
-udpServer.write("Push Notification 1");
 
 udpServer.on('error', function (err) {
     console.log("Error server UDP: ", err);
