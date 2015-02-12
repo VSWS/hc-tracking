@@ -52,6 +52,8 @@ udpServer.on("message", function (msg, rinfo) {
     }
 );
 
+udpServer.write("Push Notification 1");
+
 udpServer.on('error', function (err) {
     console.log("Error server UDP: ", err);
 });
