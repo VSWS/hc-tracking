@@ -2,10 +2,10 @@
  * Dependencies Packages
  * */
 var dgram = require("dgram"),
-    net = require('net'),
     d = require('dequeue');
 var redis = require("redis");
 var rClient = redis.createClient();
+var FIFO = new d();         // Non-blocking performance implement UDP server
 /*
  * Set Variables
  * */
@@ -72,13 +72,13 @@ console.log("Running server: ", portUDP);
 /*
  * Function init listen process performance UDP
  * */
-var FIFO = new d();         // Non-blocking performance implement UDP server
+
 
 function init() {
     while (FIFO.length > 0) {
         var msg = FIFO.shift();
         rClient.hset("raw", "data"+index, msg);
         //proxy.write(msg.toString());
-        console.log("Index:", index++);
+        console.log("Sucess: ", index++);
     }
 }
