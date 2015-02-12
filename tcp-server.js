@@ -2,8 +2,9 @@
  * Created by tungtouch on 2/9/15.
  */
 var net = require('net');
+var util = require('util');
 var port = 5555;
-
+var index = 0;
 
 // Server IP: 128.199.126.250
 var server = net.createServer(function (socket) {
@@ -15,7 +16,9 @@ var server = net.createServer(function (socket) {
 
     socket.on('data', function (data) {
         //socket.write("Server:", data);
-        console.log('Client:', data.toString());
+        //var result = data.toString();
+      console.log("Index: ", index++);
+
     });
 
     //socket.write("Welcome, i'm Server ! \r\n");

@@ -3,7 +3,8 @@
  * */
 var dgram = require("dgram"),
     net = require('net'),
-    d = require('dequeue');
+    d = require('dequeue'),
+    util = require('util');
 
 
 /*
@@ -12,7 +13,7 @@ var dgram = require("dgram"),
 var portUDP = 4545; // UDP Port
 
 var hostTCP = "localhost", // TCP IP Server
-    portTCP = 5555; // TCP Port
+    portTCP = 7777; // TCP Port
 
 setInterval(init, 1);
 
@@ -26,12 +27,9 @@ var proxy = new net.Socket();
 
  });*/
 
-
-
-proxy.on('data', function (data) {
-    console.log("Server: ", data.toString());
+proxy.connect(portTCP, hostTCP, function(socket){
+    console.log("Connect succes server:", hostTCP);
 });
-
 proxy.on('error', function (err) {
     console.log("Error proxy UDP to TCP: ", err);
 });
@@ -50,20 +48,17 @@ proxy.on('close', function () {
  * */
 var udpServer = dgram.createSocket("udp4");
 var index = 0;
-var obj;
 
 udpServer.on("message",
     function (msg, rinfo) {
-        index++;
-        console.log("msg", msg);
-        obj = {"index": index, "msg": msg};
-        FIFO.push(obj);
+        FIFO.push(msg);
     }
 );
 
 udpServer.on('error', function (err) {
     console.log("Error server UDP: ", err);
 });
+udpServer.bind(portUDP);
 
 console.log("Running server: ", portUDP);
 
@@ -76,7 +71,7 @@ var FIFO = new d();         // Non-blocking performance implement UDP server
 function init() {
     while (FIFO.length > 0) {
         var msg = FIFO.shift();
-        proxy.write(msg);
-        console.log("Data:", msg.index);
+        proxy.write(msg.toString());
+        console.log("Index:", index++);
     }
 }
