@@ -21,6 +21,7 @@
     "colors": "^1.0.3",
     "dequeue": "^1.0.5",
     "moment": "^2.9.0",
+    "mongodb": "^1.4.30",
     "mongoose": "^3.8.23",
     "redis": "^0.12.1",
     "udp-proxy": "^0.2.1"
