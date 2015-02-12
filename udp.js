@@ -56,11 +56,11 @@ function init() {
     while (FIFO.length > 0) {
         index++;
         var msg = FIFO.shift();
-
+        console.log("MSG:", msg);
         var rawData = new rawModel({raw: msg, author: 'index:'+index});
 
         rawData.save(function (err) {
-            console.log("Insert succes");
+            console.log("Insert succes", index);
             if (err) return handleError(err);
 
             /*  rawModel.findById(rawData, function (err, doc) {
