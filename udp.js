@@ -34,6 +34,10 @@ proxy.on('error', function (err) {
     console.log("Error proxy UDP to TCP: ", err);
 });
 
+proxy.on('end', function (data) {
+    console.log("Proxy End: ", data);
+});
+
 proxy.on('close', function () {
     console.log("Proxy UDP to TCP: Closed !");
 });
