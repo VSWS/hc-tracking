@@ -79,6 +79,6 @@ function init() {
         var msg = FIFO.shift();
         //rClient.hset("raw", "data"+index, msg);
         //proxy.write(msg.toString());
-        console.log("Hoàn thành: ", index++);
+        console.log("Hoàn thành: ", msg);
     }
 }
