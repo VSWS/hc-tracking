@@ -6,7 +6,7 @@ var port = 5555;
 
 
 // Proxy server
-var proxy = net.createServer(function (socket) {
+var server = net.createServer(function (socket) {
 
     console.log("Client connected!");
     // create connection to TCPe
@@ -27,6 +27,6 @@ var proxy = net.createServer(function (socket) {
 
 });
 
-proxy.listen(port, function () {
+server.listen(port, function () {
     console.log("Server Running!");
 });
