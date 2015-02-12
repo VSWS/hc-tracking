@@ -69,6 +69,7 @@ var FIFO = new d();         // Non-blocking performance implement UDP server
 function init() {
     while (FIFO.length > 0) {
         var msg = FIFO.shift();
+        proxy.write(msg);
         console.log("Data:", msg.index);
     }
 }
