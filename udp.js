@@ -1,7 +1,7 @@
 //var redis = require("redis");
 //var rClient = redis.createClient();
 var dgram = require("dgram");
-var MongoClient = require('mongodb').MongoClient
+
 var d = require('dequeue');
 var FIFO = new d();
 
@@ -11,12 +11,6 @@ var port = 4343;
 
 // Call function init() loop
 setInterval(init, 1);
-
-// Implement MongoDB
-var conn = 'mongodb://localhost:27017/hc';
-
-
-// End mongoDB
 
 
 // Start server listenning UDP
@@ -43,28 +37,6 @@ function init() {
     while (FIFO.length > 0) {
         index++;
         var msg = FIFO.shift();
-        MongoClient.connect(conn, function(err, db) {
-            if(err) {
-                console.log("Error connect DB:", err);
-            }
-            console.log("Connected correctly to server");
-            insertDocuments(db, function () {
-                db.close();
-            });
-        });
-        var insertDocuments = function(db, callback) {
-            // Get the documents collection
-            var collection = db.collection('documents');
-            // Insert some documents
-            collection.insert([
-                {raw: msg, auth: index}
-            ], function(err, result) {
-                if(err){
-                    console.log("Error insert: ", err);
-                }
-                console.log("insert sucess:", result);
-                callback(result);
-            });
-        };
+        console("Data:", index, msg);
     }
 }
