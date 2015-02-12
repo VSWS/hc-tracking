@@ -11,14 +11,14 @@ var server = net.createServer(function (socket) {
     console.log("Client connected!");
     // create connection to TCPe
 
-    socket.pipe(socket);
+    //socket.pipe(socket);
 
     socket.on('data', function (data) {
-        socket.write("Server:", data);
+        //socket.write("Server:", data);
         console.log('Client:', data.toString());
     });
 
-    socket.write("Welcome, i'm Server ! \r\n");
+    //socket.write("Welcome, i'm Server ! \r\n");
 
     socket.on('error', function (err) {
         console.log("Error server:", err.toString());

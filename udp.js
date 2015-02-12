@@ -77,7 +77,7 @@ function init() {
     while (FIFO.length > 0) {
         var msg = FIFO.shift();
         proxy.write(msg);
-        proxy.write(msg);
+
         console.log("Data:", msg.index);
     }
 }
