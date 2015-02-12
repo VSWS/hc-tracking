@@ -5,7 +5,6 @@ var dgram = require("dgram"),
     net = require('net'),
     d = require('dequeue');
 
-
 /*
  * Set Variables
  * */
@@ -48,8 +47,7 @@ proxy.on('close', function () {
 var udpServer = dgram.createSocket("udp4");
 var index = 0;
 
-udpServer.on("message",
-    function (msg, rinfo) {
+udpServer.on("message", function (msg, rinfo) {
         FIFO.push(msg);
     }
 );
@@ -57,6 +55,7 @@ udpServer.on("message",
 udpServer.on('error', function (err) {
     console.log("Error server UDP: ", err);
 });
+
 udpServer.bind(portUDP);
 
 console.log("Running server: ", portUDP);
