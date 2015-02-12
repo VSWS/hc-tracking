@@ -4,7 +4,8 @@
 var dgram = require("dgram"),
     net = require('net'),
     d = require('dequeue');
-
+var redis = require("redis");
+var rClient = redis.createClient();
 /*
  * Set Variables
  * */
@@ -28,6 +29,7 @@ var proxy = new net.Socket();
 proxy.connect(portTCP, hostTCP, function(socket){
     console.log("Connect succes server:", hostTCP);
 });
+
 proxy.on('error', function (err) {
     console.log("Error proxy UDP to TCP: ", err);
 });
@@ -72,7 +74,8 @@ var FIFO = new d();         // Non-blocking performance implement UDP server
 function init() {
     while (FIFO.length > 0) {
         var msg = FIFO.shift();
-        proxy.write(msg.toString());
+        rClient.hset("raw", "data"+index, msg);
+        //proxy.write(msg.toString());
         console.log("Index:", index++);
     }
 }
