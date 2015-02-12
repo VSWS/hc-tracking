@@ -11,7 +11,7 @@ var dgram = require("dgram"),
  * */
 var portUDP = 4343; // UDP Port
 
-var hostTCP = "128.199.126.250", // TCP IP Server
+var hostTCP = "localhost", // TCP IP Server
     portTCP = 5555; // TCP Port
 
 
@@ -25,11 +25,13 @@ proxy.connect(portTCP, hostTCP, function (socket) {
 
 });
 
-//proxy.write("Hi server, i'm client !");
+proxy.write("Hi server, i'm client !");
 
 proxy.on('data', function (data) {
     console.log("Server: ", data.toString());
 });
+
+proxy.end('End Proxy');
 
 proxy.on('error', function (err) {
     console.log("Error proxy UDP to TCP: ", err);
