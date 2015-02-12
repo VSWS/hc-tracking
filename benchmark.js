@@ -11,7 +11,7 @@ var message = new Buffer("Some bytes hello world bo bo bo world HEHEHEHE ahhaha 
 var client = dgram.createSocket("udp4");
 var async = require('async');
 
-var max = 5000;
+var max = 2000;
 var serverUDP = "128.199.126.250"; //128.199.126.250
 var port = 4343;
 var numCluster = 100;
@@ -44,7 +44,7 @@ if (cluster.isMaster) {
             console.log("Tổng thời gian: ", second-1 + "s", " | Tổng số gói tin:", totalReqs);
             console.log(colors.cyan("Kết quả hệ thống: ", colors.bold(totalReqs / second)), " Thiết bị/giây ! \n");
 
-            //process.exit(1);
+            process.exit(1);
         }
     }, 1000);
 

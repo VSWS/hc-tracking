@@ -10,16 +10,18 @@ var port = 4343;
 
 
 // Call function init() loop
-//setInterval(init, 1);
+setInterval(init, 1);
 
 
 // Start server listenning UDP
 var udpServer = dgram.createSocket("udp4");
 var index = 0;
+var obj;
 udpServer.on("message",
     function (msg, rinfo) {
         index++;
-        console.log("Data:", index);
+        obj = {"index": index, "msg": msg};
+        FIFO.push(obj);
     }
 );
 
@@ -37,6 +39,6 @@ console.log("Running server: ", port);
 function init() {
     while (FIFO.length > 0) {
         var msg = FIFO.shift();
-
+        console.log("Data:", msg.index);
     }
 }
