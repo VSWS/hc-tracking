@@ -15,10 +15,11 @@ setInterval(init, 1);
 
 // Start server listenning UDP
 var udpServer = dgram.createSocket("udp4");
-
+var index = 0;
 udpServer.on("message",
     function (msg, rinfo) {
-        FIFO.push(msg.toString());
+        index++;
+        FIFO.push(msg.toString(), index);
     }
 );
 
@@ -32,11 +33,11 @@ console.log("Running server: ", port);
 
 
 // Function init listen process performance UDP
-var index = 0;
+
 function init() {
     while (FIFO.length > 0) {
-        index++;
+        console("Data:", msg);
         var msg = FIFO.shift();
-        console("Data:", index, msg);
+
     }
 }
