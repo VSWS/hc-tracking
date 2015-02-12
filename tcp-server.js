@@ -14,7 +14,7 @@ var server = net.createServer(function (socket) {
     //socket.pipe(socket);
 
     socket.on('data', function (data) {
-        console.log('Data client:', data.toString());
+        console.log('Client:', data.toString());
     });
 
     socket.write("Yo, I'm Server ! \r\n");

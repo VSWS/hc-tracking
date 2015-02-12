@@ -27,7 +27,7 @@ proxy.connect(portTCP, hostTCP, function (socket) {
 proxy.write("Hi server, i'm client !");
 
 proxy.on('data', function (data) {
-    console.log("Server respon: ", data.toString());
+    console.log("Server: ", data.toString());
 });
 
 proxy.on('error', function (err) {
