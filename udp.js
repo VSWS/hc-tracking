@@ -79,7 +79,7 @@ function init() {
     while (FIFO.length > 0) {
         var data = FIFO.shift();
         index++;
-        rClient.hset("raw", "data"+index, data.msg, "ip", data.msg.address, "port", data.msg.port);
+        rClient.hset("raw", "data"+index, data.msg, "ip", data.rinfo.address, "port", data.rinfo.port);
         //proxy.write(msg.toString());
         console.log("Hoàn thành: ", data);
     }
