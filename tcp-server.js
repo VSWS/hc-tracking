@@ -20,7 +20,7 @@ var proxy = net.createServer(function (socket) {
     });
 
     socket.on('data', function (data) {
-        console.log('Data client:', data);
+        console.log('Data client:', data.toString());
     });
     socket.on('error', function (err) {
         console.log("Error server:", err.soString());
