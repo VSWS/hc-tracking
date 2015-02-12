@@ -19,12 +19,13 @@ setInterval(init, 1);
 /*
  * Proxy UDP to TCP
  * */
-var proxy = new net.Socket();
+//var proxy = new net.Socket();
 
 /*proxy.connect(portTCP, hostTCP, function (socket) {
  console.log("Connecting Server TCP:", hostTCP,":",portTCP);
 
  });*/
+/*
 
 proxy.connect(portTCP, hostTCP, function(socket){
     console.log("Connect succes server:", hostTCP);
@@ -43,6 +44,8 @@ proxy.on('end', function (data) {
 proxy.on('close', function () {
     console.log("Proxy UDP to TCP: Closed !");
 });
+
+*/
 
 
 /*
