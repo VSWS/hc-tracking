@@ -5,7 +5,7 @@ var net = require('net');
 var port = 5555;
 
 
-// Proxy server
+// Server IP: 128.199.126.250
 var server = net.createServer(function (socket) {
 
     console.log("Client connected!");

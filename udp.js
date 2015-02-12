@@ -11,7 +11,7 @@ var dgram = require("dgram"),
  * */
 var portUDP = 4343; // UDP Port
 
-var hostTCP = "128.12.21.12", // TCP IP Server
+var hostTCP = "128.199.126.250", // TCP IP Server
     portTCP = 5555; // TCP Port
 
 
