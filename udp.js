@@ -22,8 +22,10 @@ var proxy = new net.Socket();
 
 proxy.connect(portTCP, hostTCP, function (socket) {
     console.log("Connecting Server TCP:", hostTCP,":",portTCP);
-    socket.write("Hi server, i'm client !");
+
 });
+
+//proxy.write("Hi server, i'm client !");
 
 proxy.on('data', function (data) {
     console.log("Server: ", data.toString());
