@@ -38,6 +38,6 @@ function init() {
     while (FIFO.length > 0) {
 
         var msg = FIFO.shift();
-        console("Data:", msg);
+        console.log("Data:", msg);
     }
 }
