@@ -11,7 +11,7 @@ var message = new Buffer("Some bytes hello world bo bo bo world HEHEHEHE ahhaha 
 var client = dgram.createSocket("udp4");
 var async = require('async');
 
-var max = 2000;
+var max = 100;
 var serverUDP = "128.199.149.159"; //128.199.126.250
 var port = 4343;
 var delay = 20;
@@ -59,7 +59,7 @@ if (cluster.isMaster) {
 
     // Start workers and listen for messages containing notifyRequest
 
-    for (var i = 0; i < numCluster; i++) {
+    for (var i = 0; i < numCPUs; i++) {
         cluster.fork();
     }
 
