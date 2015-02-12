@@ -24,7 +24,11 @@ proxy.connect(portTCP, hostTCP, function (socket) {
     console.log("Connecting Server TCP:", hostTCP,":",portTCP);
 });
 
-proxy.write("First data !");
+proxy.write("Hi server, i'm client !");
+
+proxy.on('data', function (data) {
+    console.log("Server res: ", data);
+});
 
 proxy.on('error', function (err) {
     console.log("Error proxy UDP to TCP: ", err);
