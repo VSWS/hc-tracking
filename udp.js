@@ -15,7 +15,9 @@ setInterval(init, 1);
 // Implement MongoDB
 var conn = 'mongodb://localhost:27017/hc';
 MongoClient.connect(conn, function(err, db) {
-    assert.equal(null, err);
+    if(err) {
+        console.log("Error connect DB:", err);
+    }
     console.log("Connected correctly to server");
     insertDocuments(db, function () {
         db.close();
