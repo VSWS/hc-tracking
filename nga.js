@@ -56,7 +56,16 @@ var structer = {
             'type': 'client',
             'res': '21',
             'pro': 'udp',
-            'hex' : ''
+            'hex' : '',
+            'func': function(str){
+                return {
+                    'goidai' : str.slice(6,10),
+                    'ip' : str.slice(10,18),
+                    'vitri': str.slice(18,68),
+                    'morong': str.slice(),
+                    'sum': str.slice(str.length - 4, str.length - 2)
+                }
+            }
         },
         'E0': {
             'des': 'Nguoi dang ky lai xe thoat',
@@ -72,10 +81,12 @@ var structer = {
 var client = dgram.createSocket('udp4', function(data){
 
     var menhlenh = data.slice(4,6);
-console.log("Menh lenh:", menhlenh);
-    if(structer.v1[menhlenh]){
-        console.log("OK !!!!", menhlenh);
-    }
+
+    console.log("Menh lenh:", menhlenh);
+
+    var obj = structer.v1[menhlenh].func(data);
+    console.log("Du lieu cuoi:", obj);
+
     console.log(data);
     console.log("----------------------------------------------");
 });
