@@ -81,12 +81,16 @@ var structer = {
 var client = dgram.createSocket('udp4', function(data){
     var data = data.toString('hex');
     console.log('data',data);
+
     var menhlenh = data.slice(4,6);
 
     console.log("Menh lenh:", menhlenh);
 
-    var obj = structer.v1[menhlenh].func(data);
-    console.log("Du lieu cuoi:", obj);
+    if(menhlenh === 80){
+        var obj = structer.v1[menhlenh].func(data);
+        console.log("Du lieu cuoi:", obj);
+    }
+
 
     console.log(data);
     console.log("----------------------------------------------");
