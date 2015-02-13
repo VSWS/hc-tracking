@@ -43,6 +43,7 @@ var structer = {
             'pro' : 'udp',
             'func': function(str){
                 return {
+                    'menhlenh': str.slice(4,6),
                     'goidai' : str.slice(6,10),
                     'ip' : str.slice(10,18),
                     'vitri': str.slice(18,68),
@@ -51,7 +52,7 @@ var structer = {
                 }
             }
         },
-        'B1': {
+        'b1': {
             'des': 'Du lieu nhay',
             'type': 'client',
             'res': '21',
@@ -59,10 +60,10 @@ var structer = {
             'hex' : '',
             'func': function(str){
                 return {
+                    'menhlenh': str.slice(4,6),
                     'goidai' : str.slice(6,10),
                     'ip' : str.slice(10,18),
-                    'vitri': str.slice(18,68),
-                    'morong': str.slice(),
+                    'thoigiannhay': str.slice(18, str.lengh-4),
                     'sum': str.slice(str.length - 4, str.length - 2)
                 }
             }
@@ -80,7 +81,6 @@ var structer = {
 
 var client = dgram.createSocket('udp4', function(data){
     var data = data.toString('hex');
-    console.log('data',data);
 
     var menhlenh = data.slice(4,6);
 
@@ -88,11 +88,15 @@ var client = dgram.createSocket('udp4', function(data){
 
     if(menhlenh == 80){
         var obj = structer.v1[menhlenh].func(data);
-        console.log("Du lieu cuoi:", obj);
+        console.log("Filter Data:", obj);
+    }
+    if(menhlenh == 'b1'){
+        var obj = structer.v1[menhlenh].func(data);
+        console.log("Filter Data:", obj);
     }
 
 
-    console.log(data);
+    //console.log(data);
     console.log("----------------------------------------------");
 });
 

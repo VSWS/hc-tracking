@@ -55,18 +55,6 @@ var udpServer = dgram.createSocket("udp4");
 var index = 0;
 
 
-var str = "292980002f00802ed51501302005210210079210548829000000007c0000007feffff8001e007800000000000500010000001f0d";
-
-var goidau = str.slice(0,4);
-var menhlenh = str.slice(4,6);
-var goidai = str.slice(6,10);
-var ip = str.slice(10,18);
-var vitri = str.slice(18,68);
-var sum = str.slice(str.length - 4, str.length - 2);
-var morong = str.slice(68, str.length - 4);
-var goicuoi = str.slice(str.length - 2, str.length);
-
-
 var structer = {
     'v1' : {
         "30" : {
@@ -107,16 +95,32 @@ var structer = {
             'type': 'client',
             'res' : '21',
             'pro' : 'udp',
-            'func': function(data){
-
+            'func': function(str){
+                return {
+                    'menhlenh': str.slice(4,6),
+                    'goidai' : str.slice(6,10),
+                    'ip' : str.slice(10,18),
+                    'vitri': str.slice(18,68),
+                    'morong': str.slice(),
+                    'sum': str.slice(str.length - 4, str.length - 2)
+                }
             }
         },
-        'B1': {
+        'b1': {
             'des': 'Du lieu nhay',
             'type': 'client',
             'res': '21',
             'pro': 'udp',
-            'hex' : ''
+            'hex' : '',
+            'func': function(str){
+                return {
+                    'menhlenh': str.slice(4,6),
+                    'goidai' : str.slice(6,10),
+                    'ip' : str.slice(10,18),
+                    'thoigiannhay': str.slice(18, str.lengh-4),
+                    'sum': str.slice(str.length - 4, str.length - 2)
+                }
+            }
         },
         'E0': {
             'des': 'Nguoi dang ky lai xe thoat',
@@ -128,16 +132,22 @@ var structer = {
     }
 };
 
-console.log(">", goidau,'menh lenh:',  menhlenh, 'goi dai:', goidai, 'ip:', ip, 'vi tri:', vitri, 'morong:', morong, 'sum:', sum, 'goi cuoi:', goicuoi);
+udpServer.on("message", function (data, rinfo) {
+        var data = data.toString('hex');
 
+        var menhlenh = data.slice(4,6);
 
-udpServer.on("message", function (msg, rinfo) {
-        menhlenh = msg.slice(4,6);
-        if(structer.v1[menhlenh]){
-            console.log("Du lieu ok")
+        console.log("Menh lenh:", menhlenh);
+
+        if(menhlenh == 80){
+            var obj = structer.v1[menhlenh].func(data);
+            console.log("Filter Data:", obj);
         }
-        if(msg)
-        var obj = {data: msg, rinfo: rinfo};
+        if(menhlenh == 'b1'){
+            var obj = structer.v1[menhlenh].func(data);
+            console.log("Filter Data:", obj);
+        }
+        //var obj = {data: msg, rinfo: rinfo};
         FIFO.push(obj);
     }
 );
@@ -160,9 +170,19 @@ console.log("Running server: ", portUDP);
 function init() {
     while (FIFO.length > 0) {
         var data = FIFO.shift();
-        index++;
 
-        rClient.hmset("raw", "data"+index, data, "ip", data.rinfo.address, 'port',data.rinfo.port);
+        index++;
+        if(data.menhlenh == '80'){
+            rClient.hmset("raw", "data"+index,
+                "menhlenh",data.menhlenh, 'goidai',data.goidai,
+                'ip', data.ip, 'vitri', data.vitri, 'morong', data.morong, 'sum', data.sum);
+        }
+        if(data.menhlenh == 'b1'){
+            rClient.hmset("raw", "data"+index,
+                "menhlenh",data.menhlenh, 'goidai',data.goidai,
+                'ip', data.ip, 'thoigiannhay', data.thoigiannhay, 'sum', data.sum);
+        }
+
         //proxy.write(msg.toString());
         console.log("Hoàn thành: ", data);
     }
