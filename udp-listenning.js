@@ -6,6 +6,9 @@ var colors = require('colors');
 //var buffer = new Buffer(11);
 var ports = [4000, 4001, 4002, 4003, 4004, 4005, 4006, 4007, 4008, 4009, 4010];
 
+var structer = {
+
+}
 
 for(var i=1; i < ports.length; i++){
     console.log("Start listen port ",i,":",ports[i]);
