@@ -72,7 +72,7 @@ var structer = {
 var client = dgram.createSocket('udp4', function(data){
 
     var menhlenh = data.slice(4,6);
-
+console.log("Menh lenh:", menhlenh);
     if(structer.v1[menhlenh]){
         console.log("OK !!!!", menhlenh);
     }
