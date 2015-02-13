@@ -70,7 +70,6 @@ var structer = {
 
 
 var client = dgram.createSocket('udp4', function(data){
-    var data = data.toString();
 
     var menhlenh = data.slice(4,6);
 
