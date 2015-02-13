@@ -88,7 +88,7 @@ var client = dgram.createSocket('udp4', function(data){
 
     if(menhlenh == 80){
         var obj = structer.v1[menhlenh].func(data);
-        console.log("Filter Data:", obj);
+        console.log("Filter Data:\n", obj);
     }
     if(menhlenh == 'b1'){
         var obj = structer.v1[menhlenh].func(data);
@@ -101,7 +101,7 @@ var client = dgram.createSocket('udp4', function(data){
 });
 
 client.on('message', function(data, ip) {
-    console.log(ip.port, ip.address);
+    console.log('ip:',ip.address, 'port', ip.port);
    /* client.send(logdata, 0, logdata.length, ip.port, ip.address, function(err) {
         if(!err) {
             //console.log('send success');
