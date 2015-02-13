@@ -86,7 +86,7 @@ var client = dgram.createSocket('udp4', function(data){
 
     console.log("Menh lenh:", menhlenh);
 
-    if(menhlenh === 80){
+    if(menhlenh == 80){
         var obj = structer.v1[menhlenh].func(data);
         console.log("Du lieu cuoi:", obj);
     }
