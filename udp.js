@@ -171,14 +171,13 @@ function init() {
     while (FIFO.length > 0) {
         var data = FIFO.shift();
 
-        index++;
         if(data.menhlenh == '80'){
-            rClient.hmset("raw", "data"+index,
+            rClient.hmset("raw",
                 "menhlenh",data.menhlenh, 'goidai',data.goidai,
                 'ip', data.ip, 'vitri', data.vitri, 'morong', data.morong, 'sum', data.sum);
         }
         if(data.menhlenh == 'b1'){
-            rClient.hmset("raw", "data"+index,
+            rClient.hmset("raw",
                 "menhlenh",data.menhlenh, 'goidai',data.goidai,
                 'ip', data.ip, 'thoigiannhay', data.thoigiannhay, 'sum', data.sum);
         }
