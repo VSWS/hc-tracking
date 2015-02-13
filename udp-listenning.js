@@ -1,10 +1,3 @@
-/**
- * Created by tungtouch on 2/13/15.
- */
-/**
- * Created by tungtouch on 2/5/15.
- */
-
 /*
  * Listen UDP from Device
  * */
@@ -30,4 +23,4 @@ for(var i=1; i < ports.length; i++){
 
 
 // Running
-console.log("Running");
+console.log("Running Server!");
