@@ -11,10 +11,10 @@ var message = new Buffer("292980002f00802ed5150130200521021007921054882900000000
 var client = dgram.createSocket("udp4");
 var async = require('async');
 
-var max = 1000;
+var max = 10000;
 var serverUDP = "128.199.126.250"; //"128.199.149.159"; //128.199.126.250
 var port = 4545;
-var delay = 20;
+var delay = 10;
 var numCluster = 100;
 var maxReq = max * numCluster;
 var arr = [];
